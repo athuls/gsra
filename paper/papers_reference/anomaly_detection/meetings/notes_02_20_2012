@@ -1,0 +1,10 @@
+1) Client application : Basic functionality + working on additional features
+2) Running experiments on error analysis (context aware framework)
+3) Anomaly : 
+a) Complete coverage : output results on priority
+b) Sort within same coverage sets : 
+   (i) we can pick the variables having maximum impact on the constraints
+       But what if constraint values are such that lower impact variables are the cause for current anomaly. 
+       Therefore we need to look into the values of satisfaction degrees of constraints for the anomalous data, and then decide on which variables are culprits
+       Can look at the variable's impact in terms of unit change in constraint satisfaction with unit change in variable value. But we will need to define reference constraint satisfaction degrees!!
+c) Also working on math to validate the above steps

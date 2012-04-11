@@ -1,0 +1,7 @@
+NULL and not null constraints?
+1) Blobs (do we need extensions)
+2) whether the number of tuples constraints in relationships is used to decide the kind of data entered, or can we specify that when creating tables
+3) In relational we cannot explicitly specify the constraints / relationships between entities? 
+4) Windows forms is front end , then how do we access the database? because we now have only Java and Python clients
+5) In tag table, we have to enter the location of the tag. How does the user enter the tag? shud we store it as pixels or something else?
+6) We update it separately, Gwen should be sent the changed schema?

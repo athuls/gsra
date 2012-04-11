@@ -1,0 +1,11 @@
+1) Markov assumption over states might hold, but stationary process assumption might not. i.e. the conditional distribution over next state, given current state might change with time!! - but approximately Markov
+2) Output (observations) independence assumption holds
+REMEMBER: For paper on MAP based incremental approach, assumption is that the data sequence used to training i.e. every subset is independent!!! (could be wrong)
+
+
+
+LOCALIZATION:
+1) Sort on decreasing order of span of variables across faulty constraints. 
+2) On each iteration, get set of variables that has complete span. 
+3) Create a hash table, with the key being span across faulty constraints, and the value being a sorted linked list of variables that have the key as span. 
+	For sorting the linked list in value, use the deviation of constraint from normal behavior to predict the best variable to choose for testing, based on presence of variable across all the constraints being considered.  

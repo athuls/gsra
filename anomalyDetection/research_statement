@@ -1,0 +1,21 @@
+Anomaly detection in sensor data
+
+Goal:
+We want to build an online and real time anomaly detection framework for wireless sensor systems. We would have different types of sensors installed on structures, including strain, temperature, viscosity, erosion detection sensors and accelerometers. Thus the goal is to create a domain independent framework for anomaly detection. 
+
+Current status:
+We currently have a mechanism to allow domain experts to specify constraints on multi-dimensional signal data. The domain expert inputs the following:
+1) Symbols used to specify constraints for various signals in the network
+2) Attributes for these signals
+3) Constraints on sensor readings 
+4) Input file with signal data 
+
+Given each signal data, we then use fuzzy constraint satisfaction techniques to determine local and global satisfaction degrees for constraints. Given that a signal does not satisfy a constraint exactly, we use the difference between LHS and RHS of the constraint to quantify satisfaction degree for the signal. We then obtain an average of this measure over all constraints, to determine global satisfaction degree.
+
+Possible TODO's:
+1) We can look at ways to accept/generate constraints on signals. Since there could be a large number of sensors, and we might not know exact relationships between sensors, we can consider accepting 'approximate' constraints and then use regression-type techniques to determine exact constraints. 
+2) Also we could allow the domain expert to specify some but not all constraints, and then using this input and normal sensor data, derive/infer additional constraints. 
+3) Given the constraints: 
+   a) Assume we have all the constraints. Once we have the constraints, the problem can be considered to fall under semi-supervised learning, where we would want to 	   determine thresholds/satisfaction degrees that decide boundary between normal and anomalous data. 
+   b) Assume the constraints set is not complete. Thus we need to look at ways to accomodate the fact that we have incomplete knowledge.
+

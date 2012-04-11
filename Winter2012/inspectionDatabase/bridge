@@ -1,0 +1,26 @@
+Bridge
+BridgePKFederal Structure ID : varchar(20)
+Structure Number : 4 digit number
+Facility : varchar(20)
+Feature : varchar(30)
+Location : varchar(30)
+Latitude : double
+Longitude : double
+Length : double
+Width : double
+Year Built : number 
+Year Reconstructed : number
+Inspection Frequency : number
+Bridge Type : varchar(6)
+Inspection Key : varchar(4)
+Scour Evaluation : varchar(1)
+Number of Pins : number int
+DOT Region : varchar(10)
+Element Design Type  : varchar(10)
+Superstructure Design Type : varchar(10)
+Superstructure Material : varchar(15)
+AADTT  : varchar(20)
+Salt Usage : varchar(5)
+Snow Accumulation : varchar(5)
+Climate Group : varchar(10)
+Functional Class : varchar(15)

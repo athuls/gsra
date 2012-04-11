@@ -1,0 +1,91 @@
+\begin{thebibliography}{10}
+
+\bibitem{web:doxygen}
+Doxygen.
+\newblock http://www.stack.nl/~dimitri/doxygen/.
+
+\bibitem{web:graphviz}
+Graphviz.
+\newblock http://www.graphviz.org/Documentation.php/.
+
+\bibitem{web:javadoc}
+Javadoc.
+\newblock http://java.sun.com/j2se/javadoc/.
+
+\bibitem{web:mediawiki}
+Mediawiki.
+\newblock http://www.mediawiki.org/wiki/MediaWiki/.
+
+\bibitem{web:schemaspy}
+Schemaspy.
+\newblock http://schemaspy.sourceforge.net/.
+
+\bibitem{web:wolfram}
+Wolframalpha.
+\newblock http://www.wolframalpha.com/.
+
+\bibitem{adar:zoetrope}
+E.~Adar, M.~Dontcheva, J.~Fogarty, and D.~S. Weld.
+\newblock Zoetrope: interacting with the ephemeral web.
+\newblock In {\em UIST '08: Proceedings of the 21st annual ACM symposium on
+  User interface software and technology}, pages 239--248, New York, NY, USA,
+  2008. ACM.
+
+\bibitem{ambler:refactoring}
+S.~W. Ambler and P.~J. Sadalage.
+\newblock {\em Refactoring Databases: Evolutionary Database Design}.
+\newblock Addison-Wesley Professional, 2006.
+
+\bibitem{anquetil:atool}
+N.~Anquetil, K.~M. Oliveira, A.~G. dos Santos, P.~C. da~Silva~jr, L.~C.
+  de~Araujo~jr, and S.~D. Vieira.
+\newblock A tool to automate re-documentation.
+\newblock In {\em In Forum of the CAISE, Conference on Advanced Information
+  Systems Engineering (CAiSE?05)}, page~15, 2005.
+
+\bibitem{catarci:heterogeneous}
+T.~Catarci, G.~Santucci, and J.~Cardiff.
+\newblock Graphical interaction with heterogeneous databases.
+\newblock {\em The VLDB Journal}, 6(2):097--120, 1997.
+
+\bibitem{curino:evolution}
+C.~Curino, H.~J. Moon, and C.~Zaniolo.
+\newblock Automating database schema evolution in information system upgrades.
+\newblock In {\em HotSWUp '09: Proceedings of the Second International Workshop
+  on Hot Topics in Software Upgrades}, pages 1--5, New York, NY, USA, 2009.
+  ACM.
+
+\bibitem{desouza:documentation}
+S.~C.~B. de~Souza, N.~Anquetil, and K.~M. de~Oliveira.
+\newblock A study of the documentation essential to software maintenance.
+\newblock In {\em SIGDOC '05: Proceedings of the 23rd annual international
+  conference on Design of communication}, pages 68--75, New York, NY, USA,
+  2005. ACM.
+
+\bibitem{rajlich:webredoc}
+V.~Rajlich.
+\newblock Incremental redocumentation using the web.
+\newblock {\em Software, IEEE}, 17(5):102 --106, sep/oct 2000.
+
+\bibitem{sockut:reorganization}
+G.~H. Sockut and B.~R. Iyer.
+\newblock Online reorganization of databases.
+\newblock {\em ACM Comput. Surv.}, 41(3):1--136, 2009.
+
+\bibitem{sousa:maintenance}
+M.~Sousa and H.~Moreira.
+\newblock A survey on the software maintenance process.
+\newblock pages 265 --274, nov 1998.
+
+\bibitem{yang:summarizing}
+X.~Yang, C.~M. Procopiuc, and D.~Srivastava.
+\newblock Summarizing relational databases.
+\newblock {\em Proc. VLDB Endow.}, 2(1):634--645, 2009.
+
+\bibitem{jag:summarization}
+C.~Yu and H.~V. Jagadish.
+\newblock Schema summarization.
+\newblock In {\em VLDB '06: Proceedings of the 32nd international conference on
+  Very large data bases}, pages 319--330. VLDB Endowment, 2006.
+
+\end{thebibliography}

@@ -1,0 +1,395 @@
+#!/usr/bin/python
+#
+# Torch compiler script
+# (c) Ronan Collobert 2003--2004
+#
+#
+# All rights reserved.
+# 
+# Redistribution and use in source and binary forms, with or without
+# modification, are permitted provided that the following conditions
+# are met:
+# 1. Redistributions of source code must retain the above copyright
+#    notice, this list of conditions and the following disclaimer.
+# 2. Redistributions in binary form must reproduce the above copyright
+#    notice, this list of conditions and the following disclaimer in the
+#    documentation and/or other materials provided with the distribution.
+# 3. The name of the author may not be used to endorse or promote products
+#    derived from this software without specific prior written permission.
+# 
+# THIS SOFTWARE IS PROVIDED BY THE AUTHOR ``AS IS'' AND ANY EXPRESS OR
+# IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE IMPLIED WARRANTIES
+# OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE ARE DISCLAIMED.
+# IN NO EVENT SHALL THE AUTHOR BE LIABLE FOR ANY DIRECT, INDIRECT,
+# INCIDENTAL, SPECIAL, EXEMPLARY, OR CONSEQUENTIAL DAMAGES (INCLUDING, BUT
+# NOT LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR SERVICES; LOSS OF USE,
+# DATA, OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER CAUSED AND ON ANY
+# THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT
+# (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF
+# THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
+
+import os
+import re
+import sys
+import ConfigParser
+import string
+
+def addPackageFiles(list_of_files, package):
+    files = os.listdir(config.torch_dir + "/" + package)
+    the_re = re.compile(".*?\.(cc|h)$")
+    for file in files:
+        if(the_re.search(file)):
+            list_of_files[file] = package
+            
+def scanFile(file_name, valid_files):
+    file = open(config.torch_dir + "/" + valid_files[file_name] + "/" + file_name, "r")
+    lines = file.readlines()
+    file.close()
+
+    includes = []
+    the_re = re.compile("\s*\#include\s*(\"|<)(.*?)(\"|>).*")
+    for line in lines:
+        zob = the_re.search(line)
+        if(zob):
+            includes.append(zob.group(2))
+
+    return includes
+
+def findDepsOnFile(file_name, deps, valid_files):
+
+# Voir si on a besoin de soi-meme...
+
+    if( (file_name not in deps) and valid_files.has_key(file_name) ):
+        deps.append(file_name)
+#
+
+    new_includes = []
+    includes = scanFile(file_name, valid_files)
+    for include in includes:
+        if( (include not in deps) and valid_files.has_key(include) ):
+            new_includes.append(include)
+            deps.append(include)
+
+    for new_include in new_includes:
+        findDepsOnFile(new_include, deps, valid_files)
+
+# Lecture de la config
+
+class Config:
+    pass
+
+def readConfig(override_debug_mode):
+    config = Config()
+    config.os = os.uname()[0]
+
+    the_current_dir = os.getcwd() + "/"
+    the_torch3_index = string.rfind(the_current_dir, "/Torch3/")
+    if(the_torch3_index < 0):
+        print "$ Torch3 directory not found"
+        sys.exit(0)
+
+    config.torch_dir = the_current_dir[0:the_torch3_index] + "/Torch3"
+    config_file = ConfigParser.ConfigParser()
+    config_file.read(config.torch_dir + "/" + config.os + ".cfg")
+    
+    if(not config_file.has_section("torch")):
+        print "$ Config file <" + config.torch_dir + "/" + config.os + ".cfg> not found or doesn't have any torch section"
+        sys.exit(0)
+
+    options = config_file.options("torch")
+
+    if(override_debug_mode != ""):
+        config.debug = override_debug_mode
+    else:
+        if("debug" in options):
+            config.debug = config_file.get("torch", "debug")
+            if( (config.debug != "opt") and (config.debug != "dbg") ):
+                print "$ debug is not valid (opt or dbg accepted)"
+                sys.exit(0)    
+        else:
+            config.debug = "opt"
+
+    if("floating" in options):
+        config.floating = config_file.get("torch", "floating")
+        if( (config.floating != "float") and (config.floating != "double") ):
+            print "$ floating is not valid (float or double accepted)"
+            sys.exit(0)
+    else:
+        config.floating = "float"
+
+    if("magic_key" in options):
+        config.magic_key = config_file.get("torch", "magic_key")
+    else:
+        config.magic_key = ""
+
+    if("packages" in options):
+        config.packages = ["core"] + string.split(config_file.get("torch", "packages"))
+    else:
+        config.packages = ["core"]
+
+    if("includes" in options):
+        config.includes = config_file.get("torch", "includes")
+    else:
+        config.includes = ""
+
+    if("libraries" in options):
+        config.libraries = config_file.get("torch", "libraries")
+    else:
+        config.libraries = ""
+
+    if("compiler" in options):
+        config.compiler = config_file.get("torch", "compiler")
+    else:
+        print "$ No compiler provided"
+        sys.exit(0)
+
+    if("linker" in options):
+        config.linker = config_file.get("torch", "linker")
+    else:
+        print "$ No linker provided"
+        sys.exit(0)
+
+    if("archiver" in options):
+        config.archiver = config_file.get("torch", "archiver")
+    else:
+        print "$ No archiver provided"
+        sys.exit(0)
+
+    if("verbose" in options):
+        config.verbose = config_file.getboolean("torch", "verbose")
+    else:
+        config.verbose = 0
+
+    if("library_name" in options):
+        config.library_name = config_file.get("torch", "library_name")
+    else:
+        config.library_name = "torch"
+
+    config.mode = config.debug + "_" + config.floating
+    
+    if(config.mode in options):
+        config.flags = config_file.get("torch", config.mode)
+    else:
+        config.flags = ""
+        print "! No compilation flags provided"
+
+    config.version_key = config.magic_key + config.os + "_" + config.mode
+    config.libs_dir = config.torch_dir + "/libs/" + config.version_key
+    config.objs_dir = config.torch_dir + "/objs/" + config.version_key
+    for package in config.packages:
+        config.includes = config.includes + " -I" + config.torch_dir + "/" + package
+
+    config.libraries = "-L" + config.libs_dir + " -l" + config.library_name + " " + config.libraries
+    
+    return config
+
+def getValidFiles():
+    valid_files = {}
+    for package in config.packages:
+        if(os.path.exists(config.torch_dir + "/" + package)):
+            addPackageFiles(valid_files, package)
+        else:
+            print "$ Package <" + package + "> doesn't exist"
+            sys.exit(0)
+    return valid_files
+
+def makeDepend():    
+    valid_files = getValidFiles()
+    file_deps = open(config.torch_dir + "/.deps_" + config.version_key, "w")
+    print "# Computing dependencies... [" + config.version_key + "]"
+    the_re = re.compile(".*?\.cc$")
+    for file in valid_files.keys():
+        if(the_re.search(file)):
+            deps = []
+            findDepsOnFile(file, deps, valid_files)
+            deps_on_file = ""
+            for dep in deps:
+                deps_on_file = deps_on_file + dep + " "
+            file_deps.write(deps_on_file[0:-1] + "\n")
+    file_deps.close()
+    os.system("mkdir -p " + config.objs_dir)
+    os.system("mkdir -p " + config.libs_dir)            
+
+def makeAll():
+    valid_files = getValidFiles()
+    print "# Try to compile Torch... [" + config.version_key + "]"
+    # a) Load dependencies and package associations
+    if(not os.path.exists(config.torch_dir + "/.deps_" + config.version_key)):
+        print "! Dependencies not existent..."
+        return 1
+    
+    file_deps = open(config.torch_dir + "/.deps_" + config.version_key, "r")
+    lines = file_deps.readlines()
+    file_deps.close()
+    deps = {}
+    for line in lines:
+        splitted_line = string.split(line)
+        deps[splitted_line[0][0:-2]+"o"] = splitted_line
+
+    # b) Check if all valid file are in dependencies
+    n_cc_files = 0
+    the_re = re.compile(".*?\.cc$")
+    for file in valid_files.keys():
+        if(the_re.search(file)):
+            n_cc_files = n_cc_files + 1
+            if(not deps.has_key(file[0:-2]+"o")):
+                print "! New cc file detected, re-doing dependencies (" + file + ")"
+                return 1
+
+    if(n_cc_files != len(deps.keys())):
+        print "! Dependencies not up to date..."
+        return 1
+
+    # c) Find last modification dates (for valid source files and object files)
+    valid_file_dates = {}
+    for valid_file in valid_files.keys():
+        valid_file_dates[valid_file] = os.path.getmtime(config.torch_dir + "/" + valid_files[valid_file] + "/" + valid_file)
+        
+    object_file_dates = {}
+    for object_file in deps.keys():
+        full_path_object_file = config.objs_dir + "/" + object_file
+        if(os.path.exists(full_path_object_file)):
+            object_file_dates[object_file] = os.path.getmtime(full_path_object_file)
+        else:
+            object_file_dates[object_file] = 0
+
+    # d) Find objects to update
+    objects_to_update = []
+    for object_file in deps.keys():
+        object_file_date = object_file_dates[object_file]
+        for dep_file in deps[object_file]:
+            if(valid_file_dates[dep_file] > object_file_date):
+                objects_to_update.append(object_file)
+                break
+            
+    # e) Update objects
+    objects_to_update.sort()
+    for object_file in objects_to_update:
+        src_file = object_file[0:-1] + "cc"
+        src_file = config.torch_dir + "/" + valid_files[src_file] + "/" + src_file
+        cmd = config.compiler + " " + config.flags + " " + config.includes + " -o " + config.objs_dir + "/" + object_file + " -c " + src_file
+        if config.verbose:
+            print cmd
+        else:
+            print object_file[0:-2]+".cc"
+        if(os.system(cmd) != 0):
+            print "$ Compilation failed"
+            sys.exit(0)
+
+    # f) Update library
+
+    i_should_archive = 0
+    lib_file = config.libs_dir + "/lib" + config.library_name + ".a"
+    if( (os.path.exists(lib_file)) and (len(objects_to_update) == 0) ):
+        lib_file_date = os.path.getmtime(lib_file)
+        for object_file in deps.keys():
+            full_path_object_file = config.objs_dir + "/" + object_file
+            if(os.path.getmtime(full_path_object_file) > lib_file_date):
+                i_should_archive = 1
+    else:
+        i_should_archive = 1
+        
+    if( (not os.path.exists(lib_file)) or (len(objects_to_update) > 0) ):
+        all_objects = ""
+        for object_file in deps.keys():
+            all_objects = all_objects + config.objs_dir + "/" + object_file + " "
+        cmd = config.archiver + " " + lib_file + " " + all_objects 
+        print "# Archiving..."
+        if config.verbose:
+            print cmd
+        os.system(cmd)
+        
+    return 0
+
+def makeClean():
+    print "# Cleaning all the objects... [" + config.version_key + "]"
+    os.system("rm -Rf " + config.objs_dir)
+    os.system("rm -Rf " + config.libs_dir)
+    os.system("rm -f " + config.torch_dir + "/.deps_" + config.version_key)
+
+def makeDistClean():
+    print "# Atomizing all"
+    os.system("rm -Rf " + config.torch_dir + "/objs/")
+    os.system("rm -Rf " + config.torch_dir + "/libs/")
+    os.system("rm -f " + config.torch_dir + "/.deps_*")
+
+override_debug_mode = ""
+files_to_compile = []
+
+if(len(sys.argv) == 1):
+    cmd = "all"
+else:
+    if( (sys.argv[1] == "-opt") or (sys.argv[1] == "-dbg") ):
+        if(sys.argv[1] == "-opt"):
+            override_debug_mode = "opt"
+        if(sys.argv[1] == "-dbg"):
+            override_debug_mode = "dbg"
+        if(len(sys.argv) == 2):
+            cmd = "all"
+        else:
+            cmd = sys.argv[2]
+            files_to_compile = sys.argv[2:]
+    else:
+        cmd = sys.argv[1]
+        files_to_compile = sys.argv[1:]
+
+if(cmd == "os"):
+    print os.uname()[0]
+    sys.exit(0)
+
+if( (cmd == "help") or (cmd == "--help") or (cmd == "-help") or (cmd == "-h") ):
+    print "# Torch3 compiler script"
+    print "# usage: " + sys.argv[0][string.rfind(sys.argv[0], "/")+1:] + " [-opt,-dbg] [command]"
+    print "# Commands:"
+    print "    - os:              print name of your operating system"
+    print "    - all:             compile all the library [default]"
+    print "    - depend:          make dependencies"
+    print "    - clean:           clean current objects and library"
+    print "    - distclean:       clean all objects and library"
+    print "    - <filename[.cc]>: compile given *main* program(s)"
+    print ""
+    sys.exit(0)
+    
+config = readConfig(override_debug_mode)
+
+if(cmd == "depend"):
+    makeDepend()
+elif(cmd == "all"):
+    if(makeAll()):
+        makeDepend()
+        if(makeAll()):
+            print "$ Something is wrong. What are you doing ?"
+            sys.exit(0)
+    
+elif(cmd == "clean"):
+    makeClean()
+elif(cmd == "distclean"):
+    makeDistClean()
+else:
+    library_is_already_made = 0
+    for sub_cmd in files_to_compile:
+        file_name = ""
+        if(re.search(".*?\.(cc|h)$", sub_cmd)):
+            file_name = sub_cmd
+        else:
+            file_name = sub_cmd + ".cc"
+
+        if(not os.path.exists(file_name)):
+            print "$ Don't know what you want to do with your <" + sub_cmd + ">"
+            sys.exit(0)
+
+        if(not library_is_already_made):
+            library_is_already_made = 1
+            if(makeAll()):
+                makeDepend()
+                if(makeAll()):
+                    print "$ Something is wrong. What are you doing ?"
+                    sys.exit(0)
+            
+        os.system("mkdir -p " + config.version_key)
+        the_compile_cmd = config.compiler + " " + config.flags + " " + config.includes + " -o " + config.version_key + "/" + file_name[0:-3] + " " + file_name + " " + config.libraries
+        print "# Compiling <" + config.version_key + "/" + file_name[0:-3] + ">"
+        if(config.verbose):
+            print the_compile_cmd
+        if(os.system(the_compile_cmd) != 0):
+            sys.exit(0)

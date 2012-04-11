@@ -1,0 +1,51 @@
+Configuring backuppc ├───────────────────────┐
+    │                                                                      │ 
+    │ Web administration default user created                              │ 
+    │                                                                      │ 
+    │ BackupPC can be managed through its web interface:                   │ 
+    │  http://panther/backuppc/                                            │ 
+    │                                                                      │ 
+    │                                                                      │ 
+    │ For that purpose, a web user named 'backuppc' with '28qrBwYw' as     │ 
+    │ password has been created. You can change this password by running   │ 
+    │ 'htpasswd /etc/backuppc/htpasswd backuppc'.                          │ 
+    │                                              
+
+
+Web administration default user created                              │ 
+    │                                                                      │ 
+    │ BackupPC can be managed through its web interface:                   │ 
+    │  http://panther/backuppc/                                            │ 
+    │                                                                      │ 
+    │                                                                      │ 
+    │ For that purpose, a web user named 'backuppc' with 'OZH6NUSo' as     │ 
+    │ password has been created. You can change this password by running   │ 
+    │ 'htpasswd /etc/backuppc/htpasswd backuppc'
+
+
+   │                                                                                                                                                 │ 
+          │ Web administration default user created                                                                                                         │ 
+          │                                                                                                                                                 │ 
+          │ BackupPC can be managed through its web interface:                                                                                              │ 
+          │  http://panther/backuppc/                                                                                                                       │ 
+          │                                                                                                                                                 │ 
+          │                                                                                                                                                 │ 
+          │ For that purpose, a web user named 'backuppc' with 'hrZgdQTV' (new password- sujayendra) as password has been created. You can change this password by running 'htpasswd   
+	  │ 
+          │ /etc/backuppc/htpasswd backuppc'.                                                                                                               │ 
+          │                                       
+
+
+
+Web administration default user created                              │ 
+    │                                                                      │ 
+    │ BackupPC can be managed through its web interface:                   │ 
+    │  http://panther/backuppc/                                            │ 
+    │                                                                      │ 
+    │                                                                      │ 
+    │ For that purpose, a web user named 'backuppc' with 'Te5s0X2w' as     │ 
+    │ password has been created. You can change this password by running   │ 
+    │ 'htpasswd /etc/backuppc/htpasswd backuppc'.
+
+
+Starting with BackupPC 3.0.0, the configure.pl script by default complies with the file system hierarchy (FHS) conventions. The major difference compared to earlier versions is that by default configuration files will be stored in /etc/BackupPC rather than below the data directory, __TOPDIR__/conf, and the log files will be stored in /var/log/BackupPC rather than below the data directory, __TOPDIR__/log.

@@ -1,0 +1,3 @@
+BridgeRating
+Rating : int (1-9 only)
+Report : blob (varbinary) - pdfs

@@ -1,0 +1,58 @@
+'''Server start on boot''' 
+
+1) All the relevant startup scripts for Senstore server are at the following path -
+   /opt/scripts
+
+2) When the system boots, scripts are run in the following order : 
+
+   a) script_check_postgres.sh - waits until Postgres server starts, and then the script exits.
+   b) script_ufw_block.sh - Blocks port 10004 and prevents it from accepting external connections (thus allowing the restore script to run)
+   c) script_start_senstore.sh - Runs the Senstore start and restore scripts, using the most recent backup file available at /opt/senstore/release/senstore. 
+   d) script_ufw_allow.sh - Opens port 10004, to start listening to external connections, after the restore script completes.
+
+3) The above sequence of execution of scripts is enforced using Upstart, which is an event based replacement for /sbin/init daemon and allows us to handle services on the server. The config files for the same can be found at /etc/init
+
+   The relevant file names are -
+   1) upstart-senstore.conf 
+   2) upstart-ufw_block.conf
+   3) upstart-start_senstore.conf
+   4) upstart-ufw_allow.conf
+
+   Also details about Upstart and its working can be found at - http://upstart.ubuntu.com/getting-started.html
+
+
+'''Backup'''
+
+Path to all relevant files : /opt/senstore/release/senstore
+
+Relevant file names: 
+
+1) senstore_backup_script.sh - 
+   Blocks port 10004, to prevent Senstore from accepting external connections, and runs senstore_backup.pl 
+
+2) senstore_backup.pl - 
+   Attempts backup of data in 'telegraph' database. The backup is attempted till it succeeds or for a maximum of three times (whichever comes first). 
+   If backup succeeds in any of the attempts, the script immediately exits. 
+   Else it mails the pantherserver1 Gmail account, about the time of failure of backup attempt, along with the output and error files attached. 
+   Before exiting, it opens up port 10004 of Senstore. 
+
+3) senstore_backup_trim.sh - 
+   Script to run scshm_backup_trim.py, which removes old backup files, except for the last one of every previous day and all the backup files of the 
+   most recent day when a successful backup was made. 
+
+There are 2 cronjobs running currently under root:
+
+1) senstore_backup_script.sh - once every 6 hours
+
+2) senstore_backup_trim.sh - once every week
+
+To modify the cronjob, type 
+
+$ crontab -e
+
+when you are logged in as root. 
+
+Note: Cron jobs continue running irrespective of whether an attempted job succeeded or failed.
+
+Note: We must ensure both the backup and trim jobs do not run simultaneously, because only one job can be run at a time (need to fix this).
+

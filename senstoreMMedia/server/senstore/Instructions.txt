@@ -1,0 +1,24 @@
+INSTRUCTIONS TO SET UP VARIATION OF SENSTOREMMEDIA CLIENT
+
+Go to C:\Senstore Database\senstoreMMedia\server\senstore and modify the file SenStoreClient.py
+
+MODIFICATION #######################
+
+#Ice.loadSlice(os.path.join(os.path.dirname(__file__),\
+#                           '..', 'SenStore.ice'))
+Ice.loadSlice('SenStore.ice')
+
+##################### END OF MODIFICATION
+
+Copy SenStore.Ice from C:\Senstore Database\senstoreMMedia\server\senstore\scshm\database to C:\Senstore Database\senstoreMMedia\server\senstore
+
+
+INSTRUCTIONS FOR RUNNING TEST_MULTIMEDIA.PY
+
+Make necessary filepath changes for both source and destination.
+
+RUN CISCO VPN CLIENT
+GO TO COMMAND PROMPT
+>> cd C:\Senstore Database\senstoreMMedia\server\senstore
+>> python.exe test_multimedia.py
+

@@ -1,0 +1,6 @@
+INSTALLATION
+
+The DeepTorch package for Torch3 is installed the same way other Torch3
+packages are installed: move the deepTorch directory to your Torch3 folder. You
+can then compile the package by adding 'deepTorch' to the list of packages you
+wich to compile in your .cfg file.

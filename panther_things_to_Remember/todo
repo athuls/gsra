@@ -1,0 +1,18 @@
+1) need to check on pg_restore warnings when running scshm_restore script as root, monitor backup and reboot stuff constantly
+2) Paper
+3) Virtual machine to do testing (VMWare esx)
+4) Whereabouts (whereabouts.eecs.umich.edu/wiki)
+Hbase - persistent store 
+
+ssh root@virtual2.eecs.umich.edu and password: verdant,
+root password - verdant, (virtual2.eecs.umich.edu)
+virtual2-vm1
+ssh vm1-whereabouts
+
+wherygetting started hbase
+
+migrate this to ubuntu (run it in vm first)
+
+virtual2.eecs.umich.edu:8333/ui/#
+
+talk to beng heng

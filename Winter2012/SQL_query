@@ -1,0 +1,5 @@
+Query for computing component ratings from the element ratings:
+insert into component_rating select E.inspection_id, EC.component_id, avg(E.rating) from element_rating E, elements_of_components EC where E.inspection_id='2' and E.element_id=EC.element_id group by EC.component_id,E.inspection_id;
+
+Query to compute bridge ratings from component ratings:
+insert into bridge_rating(structure_id,inspection_id,rating) select B.structure_id, CR.inspection_id,avg(CR.rating) from component_rating CR, components_of_bridge B where CR.inspection_id='2' and CR.component_id=B.component_id group by B.structure_id,CR.inspection_id;

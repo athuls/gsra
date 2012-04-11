@@ -1,0 +1,80 @@
+$wgDBserver         = "localhost";
+$wgDBname           = "nist_wiki";
+$wgDBuser           = "nist_wiki_admin";
+$wgDBpassword       = "aoeu1234";
+
+
+psql nist_wiki -l nist_wiki_admin
+
+\l
+
+http://www.yolinux.com/TUTORIALS/LinuxTutorialPostgreSQL.html
+http://gablog.eu/online/node/35 (keys and stuff)
+
+mailp
+
+more /etc/passwd
+
+sudo /bin/bash
+
+ROOT password for Panther : Aug151945
+
+athuls@panther sujayendra password
+senstore user on panther sujayendra password
+
+senstore prompt: psql -d senstore -U senstore_admin 
+AND 
+password:ic3vuc5e (it is there in senstore.cfg configuration file
+
+psql -d <database_name> -U <username>
+
+5) API for conversion between coordinate systems
+
+gps_fem-view for femnode, 
+
+Relations needed:
+Placemarkers - placemarker id, Lat,Long,Alt,x,y,z,reference number
+Placemarker id, media id
+placemarker id, node id
+
+
+SMTP gmail account details:
+username:pantherserver1
+password:panther@cse.umich
+Certificate PEM pass phrase : password
+challenge password: sujayendra
+
+Servercertificate : CN = panther.eecs.umich.edu
+
+
+
+SVN:
+cd ~
+svnadmin create svn
+svn list <path>
+svn checkout svn+ssh://svnrepos@paris.eecs.umich.edu/nistcommon/senstore/core/branches/PantherServer
+
+
+
+Things to remember:
+1) drwxr-xr-x 4 senstore senstore    4096 2011-09-06 15:03 files
+drwxr-xr-x 2 senstore senstore    4096 2011-09-07 00:56 hdf5
+-rw-r--r-- 1 senstore senstore 1094971 2011-10-29 18:00 SenStore.psqldump
+
+-rw-r--r-- 1 senstore senstore 1088642 2012-01-24 18:00 SenStore.psqldump
+-rw-r--r-- 1 senstore senstore 332100072 2012-01-23 12:07 SenStore.h5
+
+-rw-r--r-- 1 senstore senstore 1191437 2012-01-26 18:00 SenStore.psqldump
+-rw-r--r-- 1 senstore senstore 332100072 2012-01-23 12:07 SenStore.h5
+
+Size of database as on 09/22/2011 : 9902 kB
+Size of database as on 09/25/2011 : 9982 kB
+Size of telegraph as on 12/15/2011 : 18618128 (18 MB)
+
+Permissions for Postgres:
+1) Password for asharada - Aug151947
+
+
+Note on backup:
+1) Can backup by connecting to database using old server and restoring those tables
+2) \d currently gives 246 rows

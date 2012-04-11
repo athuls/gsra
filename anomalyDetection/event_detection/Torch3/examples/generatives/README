@@ -1,0 +1,43 @@
+---------------------------------------------------
+
+Some examples to learn how to *program* in Torch3.
+Of course you can use them without any changes,
+but you will not use 1/10 of the library if you
+don't want to code something!
+
+kmeans.cc  : simple K-means models
+gmm.cc     : simple Gaussians Mixtures Models
+hmm.cc     : simple Hidden Markov Models (see speech and 
+             decoder example for speech recognition)
+
+---------------------------------------------------
+
+You will find two examples of datasets in data/.
+Torch3 is able to deal directly with gziped data,
+but you can uncompress them if you want to have a
+look. (Or do a zless, zcat, zmore).
+
+---------------------------------------------------
+
+Examples of command line:
+
+
+echo "GMM"
+./Linux_OPT_FLOAT/gmm -save gmm_model -one_file data/train.amat.gz
+
+or
+echo data/train.amat.gz>list;./Linux_OPT_FLOAT/gmm -save gmm_model list
+
+./Linux_OPT_FLOAT/gmm --retrain gmm_model -one_file data/train.amat.gz
+./Linux_OPT_FLOAT/gmm --test gmm_model -one_file data/test.amat.gz
+
+echo "HMM"
+./Linux_OPT_FLOAT/hmm -save hmm_model -one_file data/train.amat.gz
+./Linux_OPT_FLOAT/hmm --retrain hmm_model -one_file data/train.amat.gz
+./Linux_OPT_FLOAT/hmm --test hmm_model -one_file data/test.amat.gz
+
+echo "KMeans"
+./Linux_OPT_FLOAT/kmeans -save kmeans_model -one_file data/train.amat.gz
+./Linux_OPT_FLOAT/kmeans --test kmeans_model -one_file data/test.amat.gz
+
+---------------------------------------------------

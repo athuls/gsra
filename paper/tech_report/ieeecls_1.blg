@@ -1,0 +1,53 @@
+This is BibTeX, Version 0.99c (TeX Live 2009/Debian)
+The top-level auxiliary file: ieeecls_1.aux
+The style file: abbrv.bst
+Database file #1: modeldoc.bib
+Warning--to sort, need author or key in web:mediawiki
+Warning--to sort, need author or key in web:graphviz
+Warning--to sort, need author or key in web:schemaspy
+Warning--to sort, need author or key in web:wolfram
+Warning--to sort, need author or key in web:doxygen
+Warning--to sort, need author or key in web:javadoc
+Warning--empty booktitle in sousa:maintenance
+You've used 17 entries,
+            2118 wiz_defined-function locations,
+            585 strings with 6065 characters,
+and the built_in function-call counts, 5361 in all, are:
+= -- 538
+> -- 193
+< -- 6
++ -- 82
+- -- 62
+* -- 328
+:= -- 790
+add.period$ -- 49
+call.type$ -- 17
+change.case$ -- 81
+chr.to.int$ -- 0
+cite$ -- 24
+duplicate$ -- 227
+empty$ -- 489
+format.name$ -- 62
+if$ -- 1206
+int.to.chr$ -- 0
+int.to.str$ -- 17
+missing$ -- 12
+newline$ -- 82
+num.names$ -- 22
+pop$ -- 124
+preamble$ -- 1
+purify$ -- 65
+quote$ -- 0
+skip$ -- 185
+stack$ -- 0
+substring$ -- 322
+swap$ -- 65
+text.length$ -- 6
+text.prefix$ -- 0
+top$ -- 0
+type$ -- 66
+warning$ -- 7
+while$ -- 44
+width$ -- 19
+write$ -- 170
+(There were 7 warnings)

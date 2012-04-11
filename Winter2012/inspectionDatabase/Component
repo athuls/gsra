@@ -1,0 +1,4 @@
+Component ID : preferred: number (int) , string varchar(30) // every component is unique
+Component Code : number int
+Component name : varchar(20)
+

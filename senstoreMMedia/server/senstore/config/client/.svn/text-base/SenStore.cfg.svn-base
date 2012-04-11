@@ -1,0 +1,8 @@
+[Server]
+# Replace hostname value if needed
+# 127.0.0.1 is OK for local use, and when using SSH tunneling
+hostname=127.0.0.1
+port=10001
+[Logging]
+# Log levels are: debug, info, warning, error and critical
+LEVEL=INFO

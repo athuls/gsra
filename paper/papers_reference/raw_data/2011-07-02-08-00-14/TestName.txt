@@ -1,0 +1,16 @@
+DAQ Data Run:
+	
+
+DAQ Start Time:
+	2011-07-02  08:00:14
+
+DAQ Settings:
+	- Sampling frequency:
+		50 Hz
+	- Sampling time:
+		150 seconds
+	- Samples per polling cycle:
+		7500 samples
+	- 2 sensing unit(s) used
+		- WSU 154 [0 1 2 3]
+		- WSU 104 [0 1 2 3]

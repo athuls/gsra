@@ -1,0 +1,43 @@
+README: how to use the example mains for speech recognition
+-----
+
+Files:
+
+phonemes_*: contain the list of acceptable phonemes for the problem
+dict_*: contains the list of acceptable words for the problem: they should
+  of course be constituted of acceptable phonemes. special words <s> and </s>
+  are start and end words
+train_files: contains the list of training files, in HTK format
+train_word and train_aligned_word: contains the list of target files, 
+  using HTK standards: either one word per line, or something like this:
+    0 2250000 h#
+    2250000 3625000 th+r
+    3625000 4375000 th-r+iy
+    4375000 6500000 r-iy
+    6500000 6750000 h#
+    6750000 8875000 s+ih
+    8875000 10000000 s-ih+kcl
+    10000000 10875000 ih-kcl+k
+    10875000 11375000 kcl-k+s
+    11375000 15500000 k-s
+    15500000 17500000 h#
+  which also contains the alignment. This helps the initialization step.
+
+Programs:
+
+speech_hmm_init.cc: to initialize models using KMeans. Example of usage:
+
+Linux_OPT_FLOAT/speech_hmm_init -train_separate -threshold 0.2 -iter 100 -htk_model -save hmm_init_model -n_gaussians 10 phonemes_tri dict_tri train_files train_align_tri
+
+speech_hmm_train.cc: to train the models. Example of usage:
+
+Linux_OPT_FLOAT/speech_hmm_train -add_sil_to_targets -iter 40 -viterbi -htk_model -save hmm_model_viterbi -threshold 0.2 phonemes_tri dict_tri train_files train_word hmm_init_model
+
+speech_hmm_simple_decode.cc: to decode using simple decoder (no large vocab):
+
+Linux_OPT_FLOAT/speech_hmm_simple_decode -htk_model -log_word_entrance_penalty -15 -add_sil_to_targets hmm_model_viterbi phonemes_tri dict_tri train_files train_word
+
+speech_hmm_tode_decode.cc: to decode using TODE decoder (for large vocab):
+
+Linux_OPT_FLOAT/speech_hmm_tode_decode -htk_model -log_word_entrance_penalty -15 hmm_model_viterbi phonemes_tri dict_tri train_files train_word
+

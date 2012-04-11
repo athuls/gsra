@@ -1,0 +1,3 @@
+Element Rating
+Rating : number 1-9
+Notes : varchar (500) //can be pretty big, upto 450

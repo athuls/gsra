@@ -1,0 +1,15 @@
+<html>
+  <head>
+    <title>SenStore Documentation</title>
+  </head>
+  <body>
+    <h1>SenStore Documentation</h1>
+    <ul>
+      <li><a href="server/html/index.html">Server documentation</a></li>
+      <li><a href="client/html/index.html">Client documentation</a></li>
+      <li><a href="SenStoreDef.html">Database schema documentation</a></li>
+      <li><a href="ice/index.html">Ice interface documentation</a></li>
+      <li><a href="buildtools/html/index.html">Build tools documentation</a></li>
+    </ul>
+  </body>
+</html>

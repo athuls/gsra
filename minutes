@@ -1,0 +1,15 @@
+Meeting on NIST TIP project on supporting Spatial queries - 
+
+Date : 2nd June, 2011
+
+Main points discussed : 
+
+1) When running Vincenti and Approximate algorithms, initialize the seed for pseudo random generator to the same value. This will ensure that the sequence of error values in angles, which are picked using random number generator, are the same for every step, allowing us to compare the two algorithms.
+
+2) Give substantial arguments to justify that the results from Matlab for bounding box is the ground truth, against which all comparisons are made. 
+
+3) Should we do the analysis for a longer bridge? It so happens that one of the test cases has a visual cone of 250 ft., which is close to the normal visual region of interest, for a human. Thus an analysis on a longer bridge would not be required.
+
+4) Use tabular representations to show data for the three statistical factors.
+
+5) Start writing the paper, so that we can then get ideas on the experiments to carry out. 

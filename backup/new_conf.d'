@@ -1,0 +1,74 @@
+#
+# Local server backup of /etc as user backuppc
+#
+$Conf{XferMethod} = 'rsync';
+$Conf{RsyncClientPath} = '/usr/bin/rsync';
+$Conf{RsyncClientCmd} = '$sshPath -q -x -l root $host $rsyncPath $argList+';
+$Conf{RsyncClientRestoreCmd} = '$sshPath -q -x -l root $host $rsyncPath $argList+';
+
+$Conf{RsyncShareName} = '/';
+
+$Conf{RsyncArgs} = [
+            #
+            # Do not edit these!
+            #
+            '--numeric-ids',
+            '--perms',
+            '--owner',
+            '--group',
+            '-D',
+            '--links',
+            '--hard-links',
+            '--times',
+            '--block-size=2048',
+            '--recursive',
+
+            #
+            # Rsync >= 2.6.3 supports the --checksum-seed option
+            # which allows rsync checksum caching on the server.
+            # Uncomment this to enable rsync checksum caching if
+            # you have a recent client rsync version and you want
+            # to enable checksum caching.
+            #
+            #'--checksum-seed=32761',
+];
+
+$Conf{RsyncArgsExtra} = [];
+
+$Conf{RsyncRestoreArgs} = [
+            #
+            # Do not edit these!
+            #
+            '--numeric-ids',
+            '--perms',
+            '--owner',
+            '--group',
+            '-D',
+            '--links',
+            '--hard-links',
+            '--times',
+            '--block-size=2048',
+            '--relative',
+            '--ignore-times',
+            '--recursive',
+
+            #
+            # Rsync >= 2.6.3 supports the --checksum-seed option
+            # which allows rsync checksum caching on the server.
+            # Uncomment this to enable rsync checksum caching if
+            # you have a recent client rsync version and you want
+            # to enable checksum caching.
+           #
+            #'--checksum-seed=32761',
+
+            #
+            # Add additional arguments here
+            #
+];
+
+
+# remove extra shell escapes ($fileList+ etc.) that are
+# needed for remote backups but may break local ones
+$Conf{TarFullArgs} = '$fileList';
+$Conf{TarIncrArgs} = '--newer=$incrDate $fileList';
+

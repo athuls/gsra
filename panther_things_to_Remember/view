@@ -1,0 +1,122 @@
+CREATE TABLE CLASS_GPS_BRIDGE(
+BRIDGEID SERIAL,
+var_AX FLOAT8,
+var_AY FLOAT8,
+var_AZ FLOAT8,
+var_BBY FLOAT8,
+var_BX FLOAT8,
+var_BZ FLOAT8,
+var_Xorigin FLOAT8,
+var_Yorigin FLOAT8,
+var_Zorigin FLOAT8,
+PRIMARY KEY (BRIDGEID)
+);
+
+CREATE VIEW FEMNode_view(BridgeID, ObjectID, FX, FY, FZ)
+AS 
+SELECT 1, N.ObjectID, FEMC.var_Xorigin + (N.var_X*(FEMC.var_AX - FEMC.var_Xorigin)) + (N.var_Y*(FEMC.var_BX - FEMC.var_Xorigin)) + (N.var_Z*(((FEMC.var_AY - FEMC.var_Yorigin)*(FEMC.var_BZ-FEMC.var_Zorigin) - ( (FEMC.var_AZ-FEMC.var_Zorigin) * (FEMC.var_BBY-FEMC.var_Yorigin) )))), FEMC.var_Yorigin + (N.var_X*(FEMC.var_AY - FEMC.var_Yorigin)) + (N.var_Y*(FEMC.var_BBY - FEMC.var_Yorigin)) + (N.var_Z*( ((FEMC.var_AZ - FEMC.var_Zorigin)*(FEMC.var_BX-FEMC.var_Xorigin) - ( (FEMC.var_AX-FEMC.var_Xorigin) * (FEMC.var_BZ-FEMC.var_Zorigin) )) )), (FEMC.var_Zorigin)+(N.var_X*(FEMC.var_AZ - FEMC.var_Zorigin)) + (N.var_Y*(FEMC.var_BZ - FEMC.var_Zorigin)) + (N.var_Z*( ((FEMC.var_AX - FEMC.var_Xorigin)*(FEMC.var_BBY-FEMC.var_Yorigin) - ( (FEMC.var_AY-FEMC.var_Yorigin) * (FEMC.var_BX-FEMC.var_Xorigin) )))) 
+FROM CLASS_FEMCoordSystem AS FEMC, CLASS_FEMNode AS N
+WHERE FEMC.ObjectID = N.ref_System;
+
+CREATE VIEW GPS_FEMNode_view(ObjectID, GX, GY, GZ)
+AS 
+SELECT V.ObjectID, GPS.var_Xorigin + (V.FX*(GPS.var_AX - GPS.var_Xorigin)) + (V.FY*(GPS.var_BX - GPS.var_Xorigin)) + (V.FZ*(((GPS.var_AY - GPS.var_Yorigin)*(GPS.var_BZ-GPS.var_Zorigin) - ( (GPS.var_AZ-GPS.var_Zorigin) * (GPS.var_BBY-GPS.var_Yorigin) )))), GPS.var_Yorigin + (V.FX*(GPS.var_AY - GPS.var_Yorigin)) + (V.FY*(GPS.var_BBY - GPS.var_Yorigin)) + (V.FZ*( ((GPS.var_AZ - GPS.var_Zorigin)*(GPS.var_BX-GPS.var_Xorigin) - ( (GPS.var_AX-GPS.var_Xorigin) * (GPS.var_BZ-GPS.var_Zorigin) )) )), (GPS.var_Zorigin)+(V.FX*(GPS.var_AZ - GPS.var_Zorigin)) + (V.FY*(GPS.var_BZ - GPS.var_Zorigin)) + (V.FZ*( ((GPS.var_AX - GPS.var_Xorigin)*(GPS.var_BBY-GPS.var_Yorigin) - ( (GPS.var_AY-GPS.var_Yorigin) * (GPS.var_BX-GPS.var_Xorigin) )) )) 
+FROM CLASS_GPS_BRIDGE AS GPS, FEMNode_view AS V
+WHERE GPS.BRIDGEID=V.BRIDGEID;
+
+
+CREATE VIEW FEMNode_view(BridgeID, ObjectID, FX, FY, FZ)
+AS 
+SELECT 1, N.ObjectID, FEMC.var_Xorigin + (N.var_X*(FEMC.var_AX - FEMC.var_Xorigin)) + (N.var_Y*(FEMC.var_BX - FEMC.var_Xorigin)) + (N.var_Z*((FEMC.var_AY - FEMC.var_Yorigin)*(FEMC.var_BZ-FEMC.var_Zorigin) - ( (FEMC.var_AZ-FEMC.var_Zorigin) * (FEMC.var_BY-FEMC.var_Yorigin) ))), FEMC.var_Yorigin + (N.var_X*(FEMC.var_AY - FEMC.var_Yorigin)) + (N.var_Y*(FEMC.var_BY - FEMC.var_Yorigin)) + (N.var_Z*( ((FEMC.var_AZ - FEMC.var_Zorigin)*(FEMC.var_BX-FEMC.var_Xorigin) - ( (FEMC.var_AX-FEMC.var_Xorigin) * (FEMC.var_BZ-FEMC.var_Zorigin) )) ), (FEMC.var_Zorigin)+(N.var_X*(FEMC.var_AZ - FEMC.var_Zorigin)) + (N.var_Y*(FEMC.var_BZ - FEMC.var_Zorigin)) + (N.var_Z*( ((FEMC.var_AX - FEMC.var_Xorigin)*(FEMC.var_BY-FEMC.var_Yorigin) - ( (FEMC.var_AY-FEMC.var_Yorigin) * (FEMC.var_BX-FEMC.var_Xorigin) ))) 
+FROM tempcoord AS FEMC, tempnode AS N
+WHERE FEMC.ObjectID = N.ref_System;
+
+CREATE VIEW FEMNode_view(BridgeID, ObjectID, FX, FY, FZ)
+AS 
+SELECT 1, N.ObjectID, FEMC.var_Xorigin + (N.var_X*(FEMC.var_AX - FEMC.var_Xorigin)) + (N.var_Y*(FEMC.var_BX - FEMC.var_Xorigin)) + (N.var_Z*( ((FEMC.var_AY - FEMC.var_Yorigin)*(FEMC.var_BZ-FEMC.var_Zorigin)) - ( (FEMC.var_AZ-FEMC.var_Zorigin) * (FEMC.var_BY-FEMC.var_Yorigin) ) )), FEMC.var_Yorigin + (N.var_X*(FEMC.var_AY - FEMC.var_Yorigin)) + (N.var_Y*(FEMC.var_BY - FEMC.var_Yorigin)) + (N.var_Z* (((FEMC.var_AZ - FEMC.var_Zorigin)*(FEMC.var_BX-FEMC.var_Xorigin)) - ( (FEMC.var_AX-FEMC.var_Xorigin) * (FEMC.var_BZ-FEMC.var_Zorigin))  ) ), (FEMC.var_Zorigin)+(N.var_X*(FEMC.var_AZ - FEMC.var_Zorigin)) + (N.var_Y*(FEMC.var_BZ - FEMC.var_Zorigin)) + (N.var_Z*( ((FEMC.var_AX - FEMC.var_Xorigin)*(FEMC.var_BY-FEMC.var_Yorigin) - ( (FEMC.var_AY-FEMC.var_Yorigin) * (FEMC.var_BX-FEMC.var_Xorigin)) )     ) ) 
+FROM tempcoord AS FEMC, tempnode AS N
+WHERE FEMC.ObjectID = N.ref_System;
+
+
+* create table for placemarkers, and then write script for extracting relevant nodes in a black box.
+
+CREATE TABLE CLASS_PLACEMARKERS(
+PLACEMARKER_ID SERIAL,
+LAT FLOAT8,
+LONG FLOAT8,
+ALT FLOAT8,	
+COORDSYSTEM INT4, 
+PRIMARY KEY (PLACEMARKER_ID)
+);
+
+CREATE TABLE PLACEMARKER_NODE(
+PLACEMARKER_ID SERIAL,
+NODE_ID SERIAL,
+);
+
+CREATE TABLE PLACEMARKER_MEDIA(
+PLACEMARKER_ID SERIAL,
+MEDIA_ID SERIAL,
+);
+
+CREATE TABLE CLASS_GPS_GLOBAL(
+OBJECT_ID INT4,
+VAR_AX FLOAT8,
+VAR_AY FLOAT8,
+VAR_AZ FLOAT8,
+VAR_BBY FLOAT8,
+VAR_BX FLOAT8,
+VAR_BZ FLOAT8,
+VAR_DESCRIPTION TEXT,
+VAR_MODE INT2,
+VAR_P1 INT4,
+VAR_P2 INT4,
+VAR_P3 INT4, 
+VAR_TYPE TEXT,
+VAR_XORIGIN FLOAT8,
+VAR_YORIGIN FLOAT8,
+VAR_ZORIGIN FLOAT8,
+VAR_LOCALID INT4,
+PRIMARY KEY (OBJECT_ID)
+);
+
+CREATE VIEW PLACEMARKER_GLOBAL(PLACEMARKER_ID, GLOBAL_X, GLOBAL_Y, GLOBAL_Z)
+AS 
+SELECT PM.PLACEMARKER_ID, PM.LAT, PM.LONG, PM.ALT
+FROM CLASS_PLACEMARKERS AS PM, CLASS_GPS_GLOBAL AS BASE
+WHERE PM.COORDSYSTEM = BASE.OBJECT_ID;
+
+
+Senstore.ice has the signature, SenstoreServer.py (has the signature) and SenStore_pgdb.py (has the implementation)
+
+
+Admin for NIST Wiki:
+WikiSysop
+aoeu1234
+
+SVN Copy: make a copy of svn
+
+pygresql
+
+
+
+ufw deny in on eth0 
+
+ufw insert 1 deny in on eth0  to any port 10004 proto tcp
+ufw insert 1 deny in on eth0  to any port 10004 proto tcp
+ufw number status 
+
+
+To                         Action      From
+--                         ------      ----
+25/tcp                     ALLOW       Anywhere
+80/tcp on eth0             ALLOW       Anywhere
+22 on eth0                 ALLOW       Anywhere
+5432 on eth0               ALLOW       Anywhere
+10004 on eth0              ALLOW       Anywhere
+3306 on eth0               ALLOW       Anywhere
+631 on eth0                ALLOW       Anywhere
+10002 on eth0              ALLOW       Anywhere
+8080/tcp on eth0           ALLOW       Anywhere
+8088/tcp on eth0           ALLOW       Anywhere
+

@@ -1,0 +1,4 @@
+Observations/Deteriorations
+Observation ID : number (int) , varchar(30)
+Observation Type : not needed
+Observation Text : varchar(30) 

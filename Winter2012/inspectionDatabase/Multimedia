@@ -1,0 +1,5 @@
+Multimedia
+MM ID : int (preferred) / varchar(30)
+BLOB : images/video
+MM extension : .jpg or .pdf or .mpeg and so on
+Tags : not needed

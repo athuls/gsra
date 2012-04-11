@@ -1,0 +1,10 @@
+.settings
+Debug/*
+Debug/src
+Debug
+Release
+xml
+html
+latex
+mkg_notes
+*.d

@@ -1,0 +1,34 @@
+README for TODE
+---------------
+
+This is the main program for TODE (TOrch DEcoder).
+
+./tode.cc - the main program source
+
+After the executable has been built, a summary of
+available options can be displayed by typing
+
+tode -help
+
+A comprehensive user manual can be obtained from
+the Torch website (http://www.torch.ch/documentation.php)
+
+For assistance, suggestions, etc. please contact 
+Darren Moore (moore@idiap.ch).
+
+
+Features of TODE
+----------------
+
+- Efficient beam search decoder.
+- Can be used with both ANN and GMM-based acoustic models.
+- Accepts features or emission probabilities as input.
+- N-gram language modelling with full back-off and caching.
+- Supports many commonly used file formats (model definition, 
+  ANN weights, features, language model, etc).
+- Uses a linear lexicon
+- Implementation is straightforward, and can be readily 
+  modified/upgraded to meet the needs of researchers.
+- Easily adapted for use in non-speech decoding applications.
+- Fully supported with development ongoing.
+

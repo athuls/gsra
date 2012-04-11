@@ -1,0 +1,26 @@
+Work completed:
+
+1) We have a database schema which is built on the PONTIS database, integrating multimedia and nodal geometry. 
+
+2) We have a methodology developed to map the nodal geometry to the elements.
+
+3) We have the application that will identify all elements in context (inferred from the nodes) of the inspector. 
+
+4) We have a prototype inspection application which is to be deployed on a tablet PC. This application will allow communication (including uploading inspection information) between inspector and a remote server. It also automatically generates inspection reports as a PDF file.
+
+5) We have the backup infrastructure setup for Senstore server (version 0.2.7) running on Panther. It is currently collecting data from sensors deployed on the Telegraph bridge, every 4 hours. The backup infrastructure includes :
+   a) periodic backups of the entire database, 
+   b) RAID 1 system to backup the main disk. Also setup a web (http/cgi) user interface to allow viewing of log files, configuration, current status, initiate/cancel 	  backups, browse and restore files from backups. 
+   c) Periodic cleaning of old backup data, while retaining most recent backups in a telescopic manner. 
+   d) Automatic server restart on machine reboot. 
+
+6) Paper submitted on 'Context-Aware Computing Framework for Improved Bridge Inspections' at Construction Reseach Congress, 2012. 
+   a) Designed and developed context aware computing framework to identify spatial context using inspector position/orientation. Using inspector's profile/task data and Bridge Components geometric model, screen elements by (non-spatial) contextual parameters and determine elements in context. Further prioritize the list of contextual elements and query the database, to provide streamline information to the inspector interface. 
+   b) Designed improved bridge inspection database schema for the framework 
+   c) Carried out error analysis to determine accuracy in identifying spatial context using various GPS/tracking technologies. Compared context identification accuracy for MDOT-NBIS and PONTIS element list schemas.
+
+7) Designed and developed an approximate algorithm for real-time identification of inspectors position/orientation, given GPS/tracking technology data. It is an improvement over traditional technique for profiling a bridge's position/orientation and identifying inspectors position in the bridge reference frame.  
+
+Currently ongoing:
+1) We are working on sensor network monitoring system, using the data from accelerometers currently deployed on Telegraph bridge. The goal is to be able to identify anomalies in sensor data, thus alerting engineers about possible failures in the structure.
+2) Validation with field data and accuracy analysis of the approximate algorithm. Comparison with the traditional Vincenti algorithm for transforming GPS to linear coordinate frames.

@@ -1,0 +1,17 @@
+Have an implementation for accepting constraints and spitting out time series data which does not obey all the constraints. Stared at sensor data to see if there is any observable relations and found none. So started looking at ways to discover constraints.
+
+1) top-down / bottom-up approach for determining functional dependencies or constraints on data
+2) GP methods by using the user -input constraints as initial population
+3) Deep belief networks for feature extraction, features are themselves the constraints
+	a) Mention paper on novelty detection using product of simple experts - a potential architecture for embedded systems
+	reached above paper while looking at estimating values of missing sensor data
+	b) Mention paper on Training Products of Experts by Minimizing Contrastive Divergence by Geoffrey Hinton, cited in above paper
+
+Minutes:
+1) User defines fuzzy constraints. For. eg.: user says y=ax+b, where a and b are constants. But a and b can be within ranges/certain min and max bounds.
+2) User enters constraints programatically. Eg.: the distance between sensors has been entered and based on physical bounds on speeds of vehicles, estimate the time for a perturbation seen in one sensor to reach the other sensor. 
+3) Having done this, generate data compliant with this model, but causes a and b to vary within the predefined set of bounds
+4) Now add perturbations to the data, and detect these perturbations, when a and b fall out of bounds
+5) We could then look at training data, and learn these bounds on constraint parameters.
+6) Note that input would be the signals, parameters and data collection. Try reconciling data to model.
+7) Example for understanding: strain sensors in bridge. One is at middle of bridge and another at the end of bridge. Based on physical limitations on vehicle speeds, estimate time period for a perturbation to move from middle to end of bridge. 

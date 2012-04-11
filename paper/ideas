@@ -1,0 +1,11 @@
+Optimal density:
+1) accuracy vs. density --> get optimal density
+2) optimal density vs. size
+3) maximize number of cones that detect every element of bridge
+4) CSP with minimizing the density, constraint being : 
+baseline number of elements covered for every visual cone - new set of elements covered by visual cone <= (threshold)
+
+
+
+Paper idea:
+1) For every element identified, note the percentage of nodes in the bounding box. Then look at the number of error files in which the element has been identified. If there is a correlation between the two numbers for every element, then the density affects element identification accuracy. This is because percentage of points actually gives you an idea about the density of nodes on an element. For e.g. for node percentages < 50%, smaller the number, greater the density. Similarly for node percentages > 50 %, greater the number, more the density. This would explain the motivation for next paper on optimal density. 

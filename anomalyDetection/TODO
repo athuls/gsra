@@ -1,0 +1,5 @@
+Implementation TODO's:
+1) Use constraint learning to accept data in form of non-specific constraints (approximate model), and use regression to get the exact model
+2) Programmatically provide constraints
+3) Currently batch. Need to convert to incremental
+4) Think about using distances between consecutive readings along attributes (like time) to determine the signalling of an event

@@ -1,0 +1,22 @@
+SenStore Structural Health Monitoring System
+See LICENSE.txt for licensing terms.
+
+See the server documentation in the 'extras' package for more
+detailed instructions.
+
+Using the client:
+- Unpack SenStoreClient-x.x.x.zip
+- Change to directory SenStoreClient-x.x.x\senstore
+- Edit config\client\SenStore.cfg if needed
+- See sevenbeambridge.py for an example of interacting
+  with the server
+
+Using the extras:
+- Unpack SenStoreExtras-x.x.x.zip
+- The database definition parser can be found in
+  senstore\buildtools\dbdef.py
+- The database definition can be found in senstore\doc\SenStore.dbd
+- An XML version of the database definition can be found in
+  senstore\doc\SenStore.xml
+- Documentation can be viewed by opening senstore\doc\html\index.html
+  in a browser

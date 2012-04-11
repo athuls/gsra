@@ -1,0 +1,14 @@
+Programming framework for specifying constraints between sensor readings and create a model using these constraints:
+1) Come up with a way to define a model (by including spatial correlation and physical relationships between readings), given some sensor data
+For eg: If we have 2 sensors with noise readings in the same room, we can say each reading of one sensor dictates the readings of the other sensor, where the first reading and second reading have a time difference, inversely proportional to the speed of sound
+2) Once we have stated the model, we start feeding in normal data, which should adhere to the model at hand. 
+3) We then start modifying the hypothesis / model, based on normal sensor readings that are being fed in (the learning component)
+4) We also define events using these constraints, which are basically learned by using the data coming in FOR the model. 
+i.e. whenever the data coming in is significantly different from the model specified, that is an event. 
+5) Anomalies are subclasses of events. So when there is an anomaly, we need to have an event defined for that anomaly. 
+6) For data that is coming in, model would only say, whether or not the data adheres to the model or not. The model just outputs a decision each time.
+7) We should use this decision output to refine the model.
+8) The constraints should also scale well. 
+9) We could possibly then further infer constraints from the given set of constraints, for scaling purposes and even otherwise
+10) We do not know the behavior of the anomalies beforehand, therefore somehow need to make sure anomalous data does not corrupt the model we are building.
+11) Constraints can be in the form of inequalities or equalities. 

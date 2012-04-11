@@ -1,0 +1,6 @@
+Inspection
+Inspection ID : varchar(50) or 30
+Date : mm/dd/yyyy
+Agency : varchar(20)
+Inspector Name : varchar(20)
+

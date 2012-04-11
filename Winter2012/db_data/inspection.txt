@@ -1,0 +1,6 @@
+ inspection_id |    date    | inspector_name | agency 
+---------------+------------+----------------+--------
+ 1             | 2009-07-21 | JOHNSONTE      | MDOT
+ 2             | 2008-07-22 | KAMATVR        | UMICH
+(2 rows)
+

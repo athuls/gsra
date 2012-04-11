@@ -1,0 +1,9 @@
+11768 ?        S      0:00 perl scshm_httpd.pl
+17616 ?        S      0:00 sudo nohup python scshm_start.py
+17617 ?        Sl     9:16 python scshm_start.py
+20287 ?        S      0:00 sudo nohup python scshm_start.py
+20288 ?        Sl     5:18 python scshm_start.py
+25830 ?        S      0:00 sudo -S nohup python scshm_httpd.py
+25831 ?        S      0:01 python scshm_httpd.py
+25840 ?        Sl     0:06 /usr/bin/python scshm_httpd.py
+

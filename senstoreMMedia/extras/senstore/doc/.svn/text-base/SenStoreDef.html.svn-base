@@ -1,0 +1,1257 @@
+<html>
+ <head>
+  <title>SenStore</title>
+  <style type="text/css">
+   html {font-family: sans-serif; font-size: 10pt;}
+   h1 { font-size: 16pt;}
+   h2 { font-size: 14pt;}
+   h3 { font-size: 12pt;}
+   h4 { font-size: 11pt;}
+  </style>
+ </head>
+ <body>
+  <h1>SenStore</h1>
+  <p>SenStore database</p>
+  
+  <p>Enumerations:
+  <a href="#BoundaryType">BoundaryType</a>
+  <a href="#CoordinateSystemType">CoordinateSystemType</a>
+  <a href="#GroupType">GroupType</a>
+  <a href="#MaterialType">MaterialType</a>
+  <a href="#Quantity">Quantity</a>
+  <a href="#SectionType">SectionType</a>
+  <a href="#SensorType">SensorType</a>
+  <a href="#Unit">Unit</a>
+  </p>
+  <p>Classes:
+  <a href="#Cycle">Cycle</a>
+  <a href="#DaqUnit">DaqUnit</a>
+  <a href="#DaqUnitChannel">DaqUnitChannel</a>
+  <a href="#Experiment">Experiment</a>
+  <a href="#ExperimentStructureData">ExperimentStructureData</a>
+  <a href="#FEMAppliedConcentratedLoad">FEMAppliedConcentratedLoad</a>
+  <a href="#FEMAppliedDisplacement">FEMAppliedDisplacement</a>
+  <a href="#FEMAppliedLoads">FEMAppliedLoads</a>
+  <a href="#FEMAppliedTemperature">FEMAppliedTemperature</a>
+  <a href="#FEMAxesNode">FEMAxesNode</a>
+  <a href="#FEMBeam">FEMBeam</a>
+  <a href="#FEMBeamLoad">FEMBeamLoad</a>
+  <a href="#FEMBeamNode">FEMBeamNode</a>
+  <a href="#FEMBoundary">FEMBoundary</a>
+  <a href="#FEMConstraintCoef">FEMConstraintCoef</a>
+  <a href="#FEMConstraints">FEMConstraints</a>
+  <a href="#FEMContactGroup3">FEMContactGroup3</a>
+  <a href="#FEMContactPairs">FEMContactPairs</a>
+  <a href="#FEMContactSurface">FEMContactSurface</a>
+  <a href="#FEMCoordSystem">FEMCoordSystem</a>
+  <a href="#FEMCrossSections">FEMCrossSections</a>
+  <a href="#FEMCurvMomentData">FEMCurvMomentData</a>
+  <a href="#FEMDamping">FEMDamping</a>
+  <a href="#FEMDof">FEMDof</a>
+  <a href="#FEMElasticMaterial">FEMElasticMaterial</a>
+  <a href="#FEMEndreleases">FEMEndreleases</a>
+  <a href="#FEMForceStrainData">FEMForceStrainData</a>
+  <a href="#FEMGeneral">FEMGeneral</a>
+  <a href="#FEMGeneralGroup">FEMGeneralGroup</a>
+  <a href="#FEMGeneralNode">FEMGeneralNode</a>
+  <a href="#FEMGroundMotionRecord">FEMGroundMotionRecord</a>
+  <a href="#FEMGroup">FEMGroup</a>
+  <a href="#FEMInitialTemperature">FEMInitialTemperature</a>
+  <a href="#FEMIsoBeam">FEMIsoBeam</a>
+  <a href="#FEMIsoBeamGroup">FEMIsoBeamGroup</a>
+  <a href="#FEMLink">FEMLink</a>
+  <a href="#FEMLoadMassProportional">FEMLoadMassProportional</a>
+  <a href="#FEMMCForceData">FEMMCForceData</a>
+  <a href="#FEMMCrigidities">FEMMCrigidities</a>
+  <a href="#FEMMTForceData">FEMMTForceData</a>
+  <a href="#FEMMaterial">FEMMaterial</a>
+  <a href="#FEMMatrices">FEMMatrices</a>
+  <a href="#FEMMatrixData">FEMMatrixData</a>
+  <a href="#FEMMatrixSets">FEMMatrixSets</a>
+  <a href="#FEMNKDisplForce">FEMNKDisplForce</a>
+  <a href="#FEMNLElasticMaterials">FEMNLElasticMaterials</a>
+  <a href="#FEMNLElasticStrainStress">FEMNLElasticStrainStress</a>
+  <a href="#FEMNMTimeMass">FEMNMTimeMass</a>
+  <a href="#FEMNTNContact">FEMNTNContact</a>
+  <a href="#FEMNodalMass">FEMNodalMass</a>
+  <a href="#FEMNode">FEMNode</a>
+  <a href="#FEMOrthotropicMaterial">FEMOrthotropicMaterial</a>
+  <a href="#FEMPlasticBilinearMaterial">FEMPlasticBilinearMaterial</a>
+  <a href="#FEMPlasticMlMaterials">FEMPlasticMlMaterials</a>
+  <a href="#FEMPlasticStrainStress">FEMPlasticStrainStress</a>
+  <a href="#FEMPlate">FEMPlate</a>
+  <a href="#FEMPlateGroup">FEMPlateGroup</a>
+  <a href="#FEMPoints">FEMPoints</a>
+  <a href="#FEMProperties">FEMProperties</a>
+  <a href="#FEMPropertysets">FEMPropertysets</a>
+  <a href="#FEMSectionBox">FEMSectionBox</a>
+  <a href="#FEMSectionI">FEMSectionI</a>
+  <a href="#FEMSectionPipe">FEMSectionPipe</a>
+  <a href="#FEMSectionProp">FEMSectionProp</a>
+  <a href="#FEMSectionRect">FEMSectionRect</a>
+  <a href="#FEMShell">FEMShell</a>
+  <a href="#FEMShellAxesOrtho">FEMShellAxesOrtho</a>
+  <a href="#FEMShellAxesOrthoData">FEMShellAxesOrthoData</a>
+  <a href="#FEMShellDOF">FEMShellDOF</a>
+  <a href="#FEMShellGroup">FEMShellGroup</a>
+  <a href="#FEMShellLayer">FEMShellLayer</a>
+  <a href="#FEMShellPressure">FEMShellPressure</a>
+  <a href="#FEMSkewDOF">FEMSkewDOF</a>
+  <a href="#FEMSkewSysAngles">FEMSkewSysAngles</a>
+  <a href="#FEMSkeySysNode">FEMSkeySysNode</a>
+  <a href="#FEMSpring">FEMSpring</a>
+  <a href="#FEMSpringGroup">FEMSpringGroup</a>
+  <a href="#FEMStrLines">FEMStrLines</a>
+  <a href="#FEMThermoIsoData">FEMThermoIsoData</a>
+  <a href="#FEMThermoIsoMaterials">FEMThermoIsoMaterials</a>
+  <a href="#FEMThermoOrthData">FEMThermoOrthData</a>
+  <a href="#FEMThermoOrthMaterials">FEMThermoOrthMaterials</a>
+  <a href="#FEMThreeDSolid">FEMThreeDSolid</a>
+  <a href="#FEMThreeDSolidGroup">FEMThreeDSolidGroup</a>
+  <a href="#FEMTimeFunctionData">FEMTimeFunctionData</a>
+  <a href="#FEMTimeFunctions">FEMTimeFunctions</a>
+  <a href="#FEMTruss">FEMTruss</a>
+  <a href="#FEMTrussGroup">FEMTrussGroup</a>
+  <a href="#FEMTwistMomentData">FEMTwistMomentData</a>
+  <a href="#FEMTwoDSolid">FEMTwoDSolid</a>
+  <a href="#FEMTwoDSolidGroup">FEMTwoDSolidGroup</a>
+  <a href="#Sensor">Sensor</a>
+  <a href="#SensorTimeData">SensorTimeData</a>
+  <a href="#Structure">Structure</a>
+  <a href="#Transducer">Transducer</a>
+  <a href="#TransducerCycleData">TransducerCycleData</a>
+  <a href="#TransducerTimeData">TransducerTimeData</a>
+  </p>
+  <p>Arrays:
+  <a href="#MappingMatrix">MappingMatrix</a>
+  </p>
+  <p>Signals:
+  <a href="#AccelMeas">AccelMeas</a>
+  <a href="#DaqUnitChannelData">DaqUnitChannelData</a>
+  </p>
+
+  <h2>Enumerations</h2>
+  <h3><a name="MaterialType">MaterialType</a></h3>
+  <p>Supported material types.</p>
+  <ul>
+   <li><tt>ELASTIC</tt> Elastic material (default).</li>
+   <li><tt>ORTHOTROPIC</tt> Orthotropic material.</li>
+   <li><tt>NONLINEARELASTIC</tt> Nonlinear-elastic material.</li>
+   <li><tt>PLASTICBILINEAR</tt> Plastic bilinear material.</li>
+   <li><tt>PLASTICMULTILINEAR</tt> Plastic muli-linear material.</li>
+   <li><tt>THERMOISOTROPIC</tt> Thermo isotropic material.</li>
+   <li><tt>THERMOORTHOTROPIC</tt> Thermo orthotropic material.</li>
+  </ul>
+  <h3><a name="Unit">Unit</a></h3>
+  <p>Supported units.</p>
+  <ul>
+   <li><tt>METER</tt> Meter (SI) (default).</li>
+   <li><tt>KILOGRAM</tt> Kilogram (SI).</li>
+   <li><tt>NEWTON</tt> Newton (SI).</li>
+   <li><tt>FOOT</tt> Foot (1200/3937 meters; imperial).</li>
+   <li><tt>POUND</tt> Pound (international avoirdupois pound; 0.45359237 kilogram).</li>
+   <li><tt>KILOPOUND</tt> 1000 Pounds (imperial).</li>
+   <li><tt>SLUG</tt> Mass that accelerates by 1 ft/s^2 (imperial)</li>
+   <li><tt>KILOSLUG</tt> 1000 Slugs (imperial).</li>
+  </ul>
+  <h3><a name="Quantity">Quantity</a></h3>
+  <p>Available quantities (degrees of freedom).</p>
+  <ul>
+   <li><tt>XDISPLACEMENT</tt> X displacement (default).</li>
+   <li><tt>YDISPLACEMENT</tt> Y displacement.</li>
+   <li><tt>ZDISPLACEMENT</tt> Z displacement.</li>
+   <li><tt>XROTATION</tt> X rotation</li>
+   <li><tt>YROTATION</tt> Y rotation</li>
+   <li><tt>ZROTATION</tt> Z rotation</li>
+   <li><tt>XFORCE</tt> X force</li>
+   <li><tt>YFORCE</tt> Y force</li>
+   <li><tt>ZFORCE</tt> Z force</li>
+   <li><tt>RAW</tt> Raw (undefined).</li>
+  </ul>
+  <h3><a name="CoordinateSystemType">CoordinateSystemType</a></h3>
+  <p>Supported coordinate system types.</p>
+  <ul>
+   <li><tt>CARTESIAN</tt> Cartesian coordinate system (default)</li>
+   <li><tt>SPHERICAL</tt> Spherical coordinate system</li>
+   <li><tt>CYLINDRICAL</tt> Cylindrical coordinate system</li>
+  </ul>
+  <h3><a name="BoundaryType">BoundaryType</a></h3>
+  <p>Supported boundary types.</p>
+  <ul>
+   <li><tt>FREE</tt> Free to move (default).</li>
+   <li><tt>FIXED</tt> Fixed.</li>
+  </ul>
+  <h3><a name="SectionType">SectionType</a></h3>
+  <p>Supported cross sections.</p>
+  <ul>
+   <li><tt>BOX</tt> </li>
+   <li><tt>PROPERTIES</tt> </li>
+   <li><tt>RECTANGULAR</tt> </li>
+   <li><tt>PIPE</tt> </li>
+   <li><tt>I</tt> </li>
+   <li><tt>L</tt> </li>
+   <li><tt>U</tt> </li>
+  </ul>
+  <h3><a name="GroupType">GroupType</a></h3>
+  <p>Supported group types.</p>
+  <ul>
+   <li><tt>BEAM</tt> </li>
+   <li><tt>TRUSS</tt> </li>
+   <li><tt>GENERAL</tt> </li>
+   <li><tt>ISOBEAM</tt> </li>
+   <li><tt>PLATE</tt> </li>
+   <li><tt>SHELL</tt> </li>
+   <li><tt>SPRING</tt> </li>
+   <li><tt>THREEDSOLID</tt> </li>
+   <li><tt>TWODSOLID</tt> </li>
+  </ul>
+  <h3><a name="SensorType">SensorType</a></h3>
+  <p>Supported sensor types.</p>
+  <ul>
+   <li><tt>ACCELEROMETER</tt> Accelerometer, measuring linear acceleration.</li>
+   <li><tt>ANEMOMETER</tt> Anemometer, measuring wind speed.</li>
+   <li><tt>WINDVANE</tt> Wind vane, measuring wind direction.</li>
+   <li><tt>STRAINGAUGE</tt> Strain gauge.</li>
+  </ul>
+
+  <h2>Objects</h2>
+  <h3>Class: <a name="Structure">Structure</a></h3>
+  <ul>
+   <li><tt>string mName</tt> Short name.</li>
+   <li><tt>string mDescription</tt> One-line description.</li>
+   <li><tt>string mType</tt> Type of structure, e.g. suspension bridge.</li>
+   <li><tt><a href="#Unit">Unit</a>* mDistanceUnit</tt> Unit of distance</li>
+   <li><tt><a href="#Unit">Unit</a>* mForceUnit</tt> Unit of force</li>
+   <li><tt><a href="#Unit">Unit</a>* mWeightUnit</tt> Unit of weight</li>
+  </ul>
+  <h3>Class: <a name="FEMDof">FEMDof</a></h3>
+  <ul>
+   <li><tt><a href="#Structure">Structure</a>* mStructure</tt> Structure</li>
+   <li><tt>int32 mLocalId</tt> Local DOF number.</li>
+   <li><tt><a href="#FEMNode">FEMNode</a>* mNode</tt> Finite element node.</li>
+   <li><tt><a href="#Quantity">Quantity</a>* mDirection</tt> Direction of motion.</li>
+  </ul>
+  <h3>Class: <a name="FEMNodalMass">FEMNodalMass</a></h3>
+  <ul>
+   <li><tt>string mDescription</tt> </li>
+   <li><tt>float64 mMass1</tt> </li>
+   <li><tt>float64 mMass2</tt> </li>
+   <li><tt>float64 mMass3</tt> </li>
+   <li><tt>float64 mMass4</tt> </li>
+   <li><tt>float64 mMass5</tt> </li>
+   <li><tt>float64 mMass6</tt> </li>
+   <li><tt><a href="#FEMNode">FEMNode</a>* mNode</tt> </li>
+  </ul>
+  <h3>Class: <a name="FEMNLElasticStrainStress">FEMNLElasticStrainStress</a></h3>
+  <ul>
+   <li><tt>int32 mMaterialID</tt> </li>
+   <li><tt>int32 mRecordNumber</tt> </li>
+   <li><tt>float64 mStrain</tt> </li>
+   <li><tt>float64 mStress</tt> </li>
+  </ul>
+  <h3>Class: <a name="FEMBoundary">FEMBoundary</a></h3>
+  <ul>
+   <li><tt><a href="#FEMNode">FEMNode</a>* mNode</tt> </li>
+   <li><tt><a href="#BoundaryType">BoundaryType</a>* mOvalization</tt> </li>
+   <li><tt><a href="#BoundaryType">BoundaryType</a>* mPhi</tt> </li>
+   <li><tt><a href="#BoundaryType">BoundaryType</a>* mRx</tt> </li>
+   <li><tt><a href="#BoundaryType">BoundaryType</a>* mRy</tt> </li>
+   <li><tt><a href="#BoundaryType">BoundaryType</a>* mRz</tt> </li>
+   <li><tt><a href="#BoundaryType">BoundaryType</a>* mUx</tt> </li>
+   <li><tt><a href="#BoundaryType">BoundaryType</a>* mUy</tt> </li>
+   <li><tt><a href="#BoundaryType">BoundaryType</a>* mUz</tt> </li>
+   <li><tt>string mWarping</tt> </li>
+  </ul>
+  <h3>Class: <a name="FEMSectionPipe">FEMSectionPipe</a></h3>
+  <ul>
+   <li><tt>float64 mDiameter</tt> </li>
+   <li><tt>float64 mSC</tt> </li>
+   <li><tt>int32 mSectionID</tt> </li>
+   <li><tt>float64 mSSarea</tt> </li>
+   <li><tt>float64 mTC</tt> </li>
+   <li><tt>float64 mThickness</tt> </li>
+   <li><tt>float64 mTorfac</tt> </li>
+   <li><tt>float64 mTSarea</tt> </li>
+  </ul>
+  <h3>Class: <a name="FEMCoordSystem">FEMCoordSystem</a></h3>
+  <ul>
+   <li><tt>float64 mAX</tt> </li>
+   <li><tt>float64 mAY</tt> </li>
+   <li><tt>float64 mAZ</tt> </li>
+   <li><tt>float64 mBBY</tt> </li>
+   <li><tt>float64 mBX</tt> </li>
+   <li><tt>float64 mBZ</tt> </li>
+   <li><tt>string mDescription</tt> </li>
+   <li><tt>int16 mMode</tt> </li>
+   <li><tt>int32 mP1</tt> </li>
+   <li><tt>int32 mP2</tt> </li>
+   <li><tt>int32 mP3</tt> </li>
+   <li><tt>string mType</tt> </li>
+   <li><tt>float64 mXorigin</tt> </li>
+   <li><tt>float64 mYorigin</tt> </li>
+   <li><tt>float64 mZorigin</tt> </li>
+   <li><tt>int32 mLocalID</tt> </li>
+  </ul>
+  <h3>Class: <a name="FEMNode">FEMNode</a></h3>
+  <ul>
+   <li><tt>string mDescription</tt> </li>
+   <li><tt><a href="#FEMCoordSystem">FEMCoordSystem</a>* mSystem</tt> </li>
+   <li><tt>float64 mX</tt> </li>
+   <li><tt>float64 mY</tt> </li>
+   <li><tt>float64 mZ</tt> </li>
+   <li><tt>int32 mLocalID</tt> </li>
+  </ul>
+  <h3>Class: <a name="FEMTruss">FEMTruss</a></h3>
+  <ul>
+   <li><tt>string mDescription</tt> </li>
+   <li><tt>int32 mElementID</tt> </li>
+   <li><tt>float64 mEpsin</tt> </li>
+   <li><tt>float64 mGapwidth</tt> </li>
+   <li><tt><a href="#FEMGroup">FEMGroup</a>* mGroup</tt> </li>
+   <li><tt><a href="#FEMMaterial">FEMMaterial</a>* mMaterial</tt> </li>
+   <li><tt><a href="#FEMNode">FEMNode</a>* mN1</tt> </li>
+   <li><tt><a href="#FEMNode">FEMNode</a>* mN2</tt> </li>
+   <li><tt>int32 mRecordNmb</tt> </li>
+   <li><tt>string mSave</tt> </li>
+   <li><tt>float64 mSectionArea</tt> </li>
+   <li><tt>float64 mTBirth</tt> </li>
+   <li><tt>float64 mTDeath</tt> </li>
+  </ul>
+  <h3>Class: <a name="FEMTimeFunctionData">FEMTimeFunctionData</a></h3>
+  <ul>
+   <li><tt>float64 mDataTime</tt> </li>
+   <li><tt>int16 mGMRecordID</tt> </li>
+   <li><tt>int32 mRecordNmb</tt> </li>
+   <li><tt>int32 mTimeFunctionID</tt> </li>
+   <li><tt>float64 mTimeValue</tt> </li>
+  </ul>
+  <h3>Class: <a name="FEMPlasticMlMaterials">FEMPlasticMlMaterials</a></h3>
+  <ul>
+   <li><tt>float64 mALPHA</tt> </li>
+   <li><tt>float64 mDensity</tt> </li>
+   <li><tt>float64 mE</tt> </li>
+   <li><tt>string mHardening</tt> </li>
+   <li><tt>int32 mMaterialID</tt> </li>
+   <li><tt>float64 mNU</tt> </li>
+   <li><tt>float64 mTREF</tt> </li>
+  </ul>
+  <h3>Class: <a name="FEMPlateGroup">FEMPlateGroup</a></h3>
+  <ul>
+   <li><tt>string mDisplacement</tt> </li>
+   <li><tt><a href="#FEMGroup">FEMGroup</a>* mGroup</tt> </li>
+   <li><tt>string mIniStrain</tt> </li>
+   <li><tt>int32 mMaterialID</tt> </li>
+   <li><tt>string mResult</tt> </li>
+  </ul>
+  <h3>Class: <a name="FEMBeam">FEMBeam</a></h3>
+  <ul>
+   <li><tt><a href="#FEMNode">FEMNode</a>* mAuxNode</tt> </li>
+   <li><tt>string mDescription</tt> </li>
+   <li><tt>int32 mElementID</tt> </li>
+   <li><tt>int32 mEndRelease</tt> </li>
+   <li><tt>float64 mEpsin</tt> </li>
+   <li><tt><a href="#FEMGroup">FEMGroup</a>* mGroup</tt> </li>
+   <li><tt>float64 mIRigidEnd</tt> </li>
+   <li><tt>float64 mJRigidEnd</tt> </li>
+   <li><tt>int32 mMaterialID</tt> </li>
+   <li><tt><a href="#FEMNode">FEMNode</a>* mNode1</tt> </li>
+   <li><tt><a href="#FEMNode">FEMNode</a>* mNode2</tt> </li>
+   <li><tt>int32 mRecordNmb</tt> </li>
+   <li><tt>string mSave</tt> </li>
+   <li><tt>int32 mSectionID</tt> </li>
+   <li><tt>int32 mSubdivision</tt> </li>
+   <li><tt>float64 mTBirth</tt> </li>
+   <li><tt>float64 mTDeath</tt> </li>
+  </ul>
+  <h3>Class: <a name="FEMCurvMomentData">FEMCurvMomentData</a></h3>
+  <ul>
+   <li><tt>float64 mCurvature</tt> </li>
+   <li><tt>int32 mCurvMomentID</tt> </li>
+   <li><tt>float64 mMoment</tt> </li>
+   <li><tt>int32 mRecordNmb</tt> </li>
+  </ul>
+  <h3>Class: <a name="FEMPropertysets">FEMPropertysets</a></h3>
+  <ul>
+   <li><tt>float64 mC</tt> </li>
+   <li><tt>string mDescription</tt> </li>
+   <li><tt>float64 mK</tt> </li>
+   <li><tt>float64 mM</tt> </li>
+   <li><tt>int32 mNC</tt> </li>
+   <li><tt>int32 mNK</tt> </li>
+   <li><tt>int32 mNM</tt> </li>
+   <li><tt>string mNonlinear</tt> </li>
+   <li><tt>int32 mPropertysetID</tt> </li>
+   <li><tt>float64 mS</tt> </li>
+  </ul>
+  <h3>Class: <a name="FEMOrthotropicMaterial">FEMOrthotropicMaterial</a></h3>
+  <ul>
+   <li><tt>float64 mDensity</tt> </li>
+   <li><tt>float64 mEA</tt> </li>
+   <li><tt>float64 mEB</tt> </li>
+   <li><tt>float64 mEC</tt> </li>
+   <li><tt>float64 mGAB</tt> </li>
+   <li><tt>float64 mGAC</tt> </li>
+   <li><tt>float64 mGBC</tt> </li>
+   <li><tt><a href="#FEMMaterial">FEMMaterial</a>* mMaterial</tt> </li>
+   <li><tt>float64 mNUAB</tt> </li>
+   <li><tt>float64 mNUAC</tt> </li>
+   <li><tt>float64 mNUBC</tt> </li>
+  </ul>
+  <h3>Class: <a name="FEMAppliedLoads">FEMAppliedLoads</a></h3>
+  <ul>
+   <li><tt>int32 mAppliedLoadNmb</tt> </li>
+   <li><tt>float64 mArrivalTime</tt> </li>
+   <li><tt>int16 mLoadID</tt> </li>
+   <li><tt>string mLoadType</tt> </li>
+   <li><tt>string mSiteType</tt> </li>
+   <li><tt>int32 mTimeFunctionID</tt> </li>
+  </ul>
+  <h3>Class: <a name="FEMThermoOrthData">FEMThermoOrthData</a></h3>
+  <ul>
+   <li><tt>float64 mALPHAA</tt> </li>
+   <li><tt>float64 mALPHAB</tt> </li>
+   <li><tt>float64 mALPHAC</tt> </li>
+   <li><tt>float64 mEA</tt> </li>
+   <li><tt>float64 mEB</tt> </li>
+   <li><tt>float64 mEC</tt> </li>
+   <li><tt>float64 mGAB</tt> </li>
+   <li><tt>float64 mGAC</tt> </li>
+   <li><tt>float64 mGBC</tt> </li>
+   <li><tt>int32 mMaterialID</tt> </li>
+   <li><tt>float64 mNUAB</tt> </li>
+   <li><tt>float64 mNUAC</tt> </li>
+   <li><tt>float64 mNUBC</tt> </li>
+   <li><tt>int32 mRecordNmb</tt> </li>
+   <li><tt>float64 mTheta</tt> </li>
+  </ul>
+  <h3>Class: <a name="FEMContactPairs">FEMContactPairs</a></h3>
+  <ul>
+   <li><tt>int32 mContactorSurf</tt> </li>
+   <li><tt>int32 mContGroupID</tt> </li>
+   <li><tt>int32 mContPair</tt> </li>
+   <li><tt>float64 mFContactor</tt> </li>
+   <li><tt>float64 mFriction</tt> </li>
+   <li><tt>float64 mFTarget</tt> </li>
+   <li><tt>float64 mHeatTransf</tt> </li>
+   <li><tt>int32 mRecordNmb</tt> </li>
+   <li><tt>int32 mTargetSurf</tt> </li>
+   <li><tt>float64 mTBirth</tt> </li>
+   <li><tt>float64 mTDeath</tt> </li>
+  </ul>
+  <h3>Class: <a name="FEMGeneral">FEMGeneral</a></h3>
+  <ul>
+   <li><tt>string mDescription</tt> </li>
+   <li><tt>int32 mElementID</tt> </li>
+   <li><tt><a href="#FEMGroup">FEMGroup</a>* mGroup</tt> </li>
+   <li><tt>int32 mMatrixSet</tt> </li>
+   <li><tt>int16 mNodeAmount</tt> </li>
+   <li><tt>int32 mRecordNmb</tt> </li>
+   <li><tt>string mSave</tt> </li>
+  </ul>
+  <h3>Class: <a name="FEMBeamNode">FEMBeamNode</a></h3>
+  <ul>
+   <li><tt>string mDisplacement</tt> </li>
+   <li><tt><a href="#FEMGroup">FEMGroup</a>* mGroup</tt> </li>
+   <li><tt>string mIniStrain</tt> </li>
+   <li><tt>int32 mMaterialID</tt> </li>
+   <li><tt>string mMC</tt> </li>
+   <li><tt>int32 mMCrigidity</tt> </li>
+   <li><tt>float64 mREmultiplyer</tt> </li>
+   <li><tt>string mResult</tt> </li>
+   <li><tt>string mREtype</tt> </li>
+   <li><tt>int16 mRINT</tt> </li>
+   <li><tt>int32 mSectionID</tt> </li>
+   <li><tt>int16 mSINT</tt> </li>
+   <li><tt>int16 mTINT</tt> </li>
+  </ul>
+  <h3>Class: <a name="FEMSectionRect">FEMSectionRect</a></h3>
+  <ul>
+   <li><tt>float64 mHeight</tt> </li>
+   <li><tt>string mIShear</tt> </li>
+   <li><tt>float64 mSC</tt> </li>
+   <li><tt>int32 mSectionID</tt> </li>
+   <li><tt>float64 mSSarea</tt> </li>
+   <li><tt>float64 mTC</tt> </li>
+   <li><tt>float64 mTorfac</tt> </li>
+   <li><tt>float64 mTSarea</tt> </li>
+   <li><tt>float64 mWidth</tt> </li>
+  </ul>
+  <h3>Class: <a name="FEMBeamLoad">FEMBeamLoad</a></h3>
+  <ul>
+   <li><tt>float64 mArrivalTime</tt> </li>
+   <li><tt>int16 mDeformDepend</tt> </li>
+   <li><tt>int16 mDirectFilter</tt> </li>
+   <li><tt>int32 mElementID</tt> </li>
+   <li><tt>int16 mFace</tt> </li>
+   <li><tt><a href="#FEMGroup">FEMGroup</a>* mGroup</tt> </li>
+   <li><tt>float64 mP1</tt> </li>
+   <li><tt>float64 mP2</tt> </li>
+   <li><tt>int32 mRecordNmb</tt> </li>
+   <li><tt>int32 mTimeFunctionID</tt> </li>
+  </ul>
+  <h3>Class: <a name="FEMLoadMassProportional">FEMLoadMassProportional</a></h3>
+  <ul>
+   <li><tt>float64 mAX</tt> </li>
+   <li><tt>float64 mAY</tt> </li>
+   <li><tt>float64 mAZ</tt> </li>
+   <li><tt>int16 mLoadID</tt> </li>
+   <li><tt>float64 mMagnitude</tt> </li>
+   <li><tt><a href="#Structure">Structure</a>* mStructure</tt> </li>
+  </ul>
+  <h3>Class: <a name="FEMLink">FEMLink</a></h3>
+  <ul>
+   <li><tt>string mDescription</tt> </li>
+   <li><tt>string mDisplacement</tt> </li>
+   <li><tt><a href="#FEMNode">FEMNode</a>* mMasterNode</tt> </li>
+   <li><tt>int32 mRLID</tt> </li>
+   <li><tt><a href="#FEMNode">FEMNode</a>* mSlaveNode</tt> </li>
+  </ul>
+  <h3>Class: <a name="FEMAxesNode">FEMAxesNode</a></h3>
+  <ul>
+   <li><tt>int32 mAxNodeID</tt> </li>
+   <li><tt><a href="#FEMGroup">FEMGroup</a>* mGroup</tt> </li>
+   <li><tt><a href="#FEMNode">FEMNode</a>* mNode1</tt> </li>
+   <li><tt><a href="#FEMNode">FEMNode</a>* mNode2</tt> </li>
+   <li><tt><a href="#FEMNode">FEMNode</a>* mNode3</tt> </li>
+   <li><tt>int32 mRecordNmb</tt> </li>
+  </ul>
+  <h3>Class: <a name="FEMNMTimeMass">FEMNMTimeMass</a></h3>
+  <ul>
+   <li><tt>float64 mMass</tt> </li>
+   <li><tt>int32 mPropertyID</tt> </li>
+   <li><tt>int32 mRecordNmb</tt> </li>
+   <li><tt>float64 mTimeValue</tt> </li>
+  </ul>
+  <h3>Class: <a name="FEMAppliedDisplacement">FEMAppliedDisplacement</a></h3>
+  <ul>
+   <li><tt>float64 mArrivalTime</tt> </li>
+   <li><tt>string mDescription</tt> </li>
+   <li><tt>int16 mDirection</tt> </li>
+   <li><tt>float64 mFactor</tt> </li>
+   <li><tt><a href="#FEMNode">FEMNode</a>* mNode</tt> </li>
+   <li><tt>int32 mRecordNmb</tt> </li>
+   <li><tt>int32 mTimeFunctionID</tt> </li>
+  </ul>
+  <h3>Class: <a name="FEMTimeFunctions">FEMTimeFunctions</a></h3>
+  <ul>
+   <li><tt>string mDescription</tt> </li>
+   <li><tt>int32 mTimeFunctionID</tt> </li>
+  </ul>
+  <h3>Class: <a name="FEMForceStrainData">FEMForceStrainData</a></h3>
+  <ul>
+   <li><tt>float64 mForce</tt> </li>
+   <li><tt>int32 mForceAxID</tt> </li>
+   <li><tt>int32 mRecordNmb</tt> </li>
+   <li><tt>float64 mStrain</tt> </li>
+  </ul>
+  <h3>Class: <a name="FEMSkewDOF">FEMSkewDOF</a></h3>
+  <ul>
+   <li><tt>string mDescription</tt> </li>
+   <li><tt><a href="#FEMNode">FEMNode</a>* mNode</tt> </li>
+   <li><tt>int32 mSkewSystemID</tt> </li>
+  </ul>
+  <h3>Class: <a name="FEMSectionI">FEMSectionI</a></h3>
+  <ul>
+   <li><tt>float64 mHeight</tt> </li>
+   <li><tt>float64 mSC</tt> </li>
+   <li><tt>int32 mSectionID</tt> </li>
+   <li><tt>float64 mSSarea</tt> </li>
+   <li><tt>float64 mTC</tt> </li>
+   <li><tt>float64 mThick1</tt> </li>
+   <li><tt>float64 mThick2</tt> </li>
+   <li><tt>float64 mThick3</tt> </li>
+   <li><tt>float64 mTorfac</tt> </li>
+   <li><tt>float64 mTSarea</tt> </li>
+   <li><tt>float64 mWidth1</tt> </li>
+   <li><tt>float64 mWidth2</tt> </li>
+  </ul>
+  <h3>Class: <a name="FEMPlasticBilinearMaterial">FEMPlasticBilinearMaterial</a></h3>
+  <ul>
+   <li><tt>float64 mAlpha</tt> </li>
+   <li><tt>float64 mDensity</tt> </li>
+   <li><tt>float64 mE</tt> </li>
+   <li><tt>float64 mEPA</tt> </li>
+   <li><tt>float64 mET</tt> </li>
+   <li><tt>string mHardening</tt> </li>
+   <li><tt><a href="#FEMMaterial">FEMMaterial</a>* mMaterial</tt> </li>
+   <li><tt>float64 mNU</tt> </li>
+   <li><tt>float64 mTRef</tt> </li>
+   <li><tt>float64 mYield</tt> </li>
+  </ul>
+  <h3>Class: <a name="FEMMTForceData">FEMMTForceData</a></h3>
+  <ul>
+   <li><tt>float64 mForce</tt> </li>
+   <li><tt>int32 mMomentRID</tt> </li>
+   <li><tt>int32 mRecordNmb</tt> </li>
+   <li><tt>int32 mTwistMomentID</tt> </li>
+  </ul>
+  <h3>Class: <a name="FEMShellPressure">FEMShellPressure</a></h3>
+  <ul>
+   <li><tt>float64 mArrivalTime</tt> </li>
+   <li><tt>int16 mDeformDepend</tt> </li>
+   <li><tt>string mDescription</tt> </li>
+   <li><tt>int16 mDirectFilter</tt> </li>
+   <li><tt>int32 mElementID</tt> </li>
+   <li><tt>int16 mFace</tt> </li>
+   <li><tt><a href="#FEMGroup">FEMGroup</a>* mGroup</tt> </li>
+   <li><tt>int32 mNodaux</tt> </li>
+   <li><tt>float64 mP1</tt> </li>
+   <li><tt>float64 mP2</tt> </li>
+   <li><tt>float64 mP3</tt> </li>
+   <li><tt>float64 mP4</tt> </li>
+   <li><tt>int32 mRecordNmb</tt> </li>
+   <li><tt>int32 mTimeFunctionID</tt> </li>
+  </ul>
+  <h3>Class: <a name="FEMMatrices">FEMMatrices</a></h3>
+  <ul>
+   <li><tt>string mDescription</tt> </li>
+   <li><tt>int32 mLump</tt> </li>
+   <li><tt>int32 mMatrixID</tt> </li>
+   <li><tt>string mMatrixType</tt> </li>
+   <li><tt>int32 mND</tt> </li>
+   <li><tt>int32 mNS</tt> </li>
+  </ul>
+  <h3>Class: <a name="FEMDamping">FEMDamping</a></h3>
+  <ul>
+   <li><tt>float64 mALPHA</tt> </li>
+   <li><tt>float64 mBETA</tt> </li>
+   <li><tt><a href="#FEMGroup">FEMGroup</a>* mGroup</tt> </li>
+  </ul>
+  <h3>Class: <a name="FEMMaterial">FEMMaterial</a></h3>
+  <ul>
+   <li><tt>string mDescription</tt> </li>
+   <li><tt><a href="#MaterialType">MaterialType</a>* mMaterialType</tt> </li>
+   <li><tt>int32 mLocalID</tt> </li>
+   <li><tt><a href="#Structure">Structure</a>* mStructure</tt> </li>
+  </ul>
+  <h3>Class: <a name="FEMMatrixData">FEMMatrixData</a></h3>
+  <ul>
+   <li><tt>float64 mCoeff</tt> </li>
+   <li><tt>int32 mColumnIndex</tt> </li>
+   <li><tt>int32 mMatrixID</tt> </li>
+   <li><tt>int32 mRecordNmb</tt> </li>
+   <li><tt>int32 mRowIndex</tt> </li>
+  </ul>
+  <h3>Class: <a name="FEMShellAxesOrtho">FEMShellAxesOrtho</a></h3>
+  <ul>
+   <li><tt>float64 mALFA</tt> </li>
+   <li><tt>int32 mAxOrthoID</tt> </li>
+   <li><tt><a href="#FEMGroup">FEMGroup</a>* mGroup</tt> </li>
+   <li><tt>int32 mLineID</tt> </li>
+   <li><tt>int32 mRecordNmb</tt> </li>
+  </ul>
+  <h3>Class: <a name="FEMEndreleases">FEMEndreleases</a></h3>
+  <ul>
+   <li><tt>string mDescription</tt> </li>
+   <li><tt>int32 mEndRelease</tt> </li>
+   <li><tt>int16 mMoment1</tt> </li>
+   <li><tt>int16 mMoment2</tt> </li>
+   <li><tt>int16 mMoment3</tt> </li>
+   <li><tt>int16 mMoment4</tt> </li>
+   <li><tt>int16 mMoment5</tt> </li>
+   <li><tt>int16 mMoment6</tt> </li>
+  </ul>
+  <h3>Class: <a name="FEMTrussGroup">FEMTrussGroup</a></h3>
+  <ul>
+   <li><tt>string mDisplacement</tt> </li>
+   <li><tt>string mGAPS</tt> </li>
+   <li><tt><a href="#FEMGroup">FEMGroup</a>* mGroup</tt> </li>
+   <li><tt>string mIniStrain</tt> </li>
+   <li><tt><a href="#FEMMaterial">FEMMaterial</a>* mMaterial</tt> </li>
+   <li><tt>float64 mSectionArea</tt> </li>
+  </ul>
+  <h3>Class: <a name="FEMInitialTemperature">FEMInitialTemperature</a></h3>
+  <ul>
+   <li><tt><a href="#FEMNode">FEMNode</a>* mNode</tt> </li>
+   <li><tt>float64 mTemperature</tt> </li>
+  </ul>
+  <h3>Class: <a name="FEMThermoIsoMaterials">FEMThermoIsoMaterials</a></h3>
+  <ul>
+   <li><tt>float64 mDensity</tt> </li>
+   <li><tt>int32 mMaterialID</tt> </li>
+   <li><tt>float64 mTREF</tt> </li>
+  </ul>
+  <h3>Class: <a name="FEMThermoIsoData">FEMThermoIsoData</a></h3>
+  <ul>
+   <li><tt>float64 mALPHA</tt> </li>
+   <li><tt>float64 mE</tt> </li>
+   <li><tt>int32 mMaterialID</tt> </li>
+   <li><tt>float64 mNU</tt> </li>
+   <li><tt>int32 mRecordNmb</tt> </li>
+   <li><tt>float64 mTheta</tt> </li>
+  </ul>
+  <h3>Class: <a name="FEMContactGroup3">FEMContactGroup3</a></h3>
+  <ul>
+   <li><tt>int32 mContGroupID</tt> </li>
+   <li><tt>float64 mDepth</tt> </li>
+   <li><tt>string mDescription</tt> </li>
+   <li><tt>string mForces</tt> </li>
+   <li><tt>float64 mFriction</tt> </li>
+   <li><tt>string mIniPenetration</tt> </li>
+   <li><tt>string mNodeToNode</tt> </li>
+   <li><tt>float64 mOffset</tt> </li>
+   <li><tt>string mPenetrAlgorithm</tt> </li>
+   <li><tt>float64 mTBirth</tt> </li>
+   <li><tt>float64 mTDeath</tt> </li>
+   <li><tt>string mTied</tt> </li>
+   <li><tt>float64 mTiedOffset</tt> </li>
+   <li><tt>float64 mTolerance</tt> </li>
+   <li><tt>string mTractions</tt> </li>
+  </ul>
+  <h3>Class: <a name="FEMNLElasticMaterials">FEMNLElasticMaterials</a></h3>
+  <ul>
+   <li><tt>int32 mDcurve</tt> </li>
+   <li><tt>float64 mDensity</tt> </li>
+   <li><tt>int32 mMaterialID</tt> </li>
+  </ul>
+  <h3>Class: <a name="FEMPlate">FEMPlate</a></h3>
+  <ul>
+   <li><tt>string mDescription</tt> </li>
+   <li><tt>int32 mElementID</tt> </li>
+   <li><tt>float64 mFlex11</tt> </li>
+   <li><tt>float64 mFlex12</tt> </li>
+   <li><tt>float64 mFlex22</tt> </li>
+   <li><tt><a href="#FEMGroup">FEMGroup</a>* mGroup</tt> </li>
+   <li><tt>int32 mMaterialID</tt> </li>
+   <li><tt>float64 mMeps11</tt> </li>
+   <li><tt>float64 mMeps12</tt> </li>
+   <li><tt>float64 mMeps22</tt> </li>
+   <li><tt><a href="#FEMNode">FEMNode</a>* mN1</tt> </li>
+   <li><tt><a href="#FEMNode">FEMNode</a>* mN2</tt> </li>
+   <li><tt><a href="#FEMNode">FEMNode</a>* mN3</tt> </li>
+   <li><tt>int32 mRecordNmb</tt> </li>
+   <li><tt>string mSave</tt> </li>
+   <li><tt>float64 mTBirth</tt> </li>
+   <li><tt>float64 mTDeath</tt> </li>
+   <li><tt>float64 mThick</tt> </li>
+  </ul>
+  <h3>Class: <a name="FEMIsoBeam">FEMIsoBeam</a></h3>
+  <ul>
+   <li><tt><a href="#FEMNode">FEMNode</a>* mAUX</tt> </li>
+   <li><tt>string mDescription</tt> </li>
+   <li><tt>int32 mElementID</tt> </li>
+   <li><tt>float64 mEpaxl</tt> </li>
+   <li><tt>float64 mEphoop</tt> </li>
+   <li><tt><a href="#FEMGroup">FEMGroup</a>* mGroup</tt> </li>
+   <li><tt>int32 mMaterialID</tt> </li>
+   <li><tt><a href="#FEMNode">FEMNode</a>* mN1</tt> </li>
+   <li><tt><a href="#FEMNode">FEMNode</a>* mN2</tt> </li>
+   <li><tt><a href="#FEMNode">FEMNode</a>* mN3</tt> </li>
+   <li><tt><a href="#FEMNode">FEMNode</a>* mN4</tt> </li>
+   <li><tt>int16 mNodeAmount</tt> </li>
+   <li><tt>int32 mRecordNmb</tt> </li>
+   <li><tt>string mSave</tt> </li>
+   <li><tt>int32 mSectionID</tt> </li>
+   <li><tt>float64 mTBirth</tt> </li>
+   <li><tt>float64 mTDeath</tt> </li>
+  </ul>
+  <h3>Class: <a name="FEMAppliedConcentratedLoad">FEMAppliedConcentratedLoad</a></h3>
+  <ul>
+   <li><tt>float64 mArrivalTime</tt> </li>
+   <li><tt>string mDescription</tt> </li>
+   <li><tt>int16 mDirection</tt> </li>
+   <li><tt>float64 mFactor</tt> </li>
+   <li><tt><a href="#FEMNode">FEMNode</a>* mNodeAux</tt> </li>
+   <li><tt><a href="#FEMNode">FEMNode</a>* mNodeID</tt> </li>
+   <li><tt>int32 mRecordNmb</tt> </li>
+   <li><tt>int32 mTimeFunctionID</tt> </li>
+  </ul>
+  <h3>Class: <a name="FEMTwoDSolidGroup">FEMTwoDSolidGroup</a></h3>
+  <ul>
+   <li><tt><a href="#FEMNode">FEMNode</a>* mAuxNode</tt> </li>
+   <li><tt>string mDisplacement</tt> </li>
+   <li><tt><a href="#FEMGroup">FEMGroup</a>* mGroup</tt> </li>
+   <li><tt>int32 mMaterialID</tt> </li>
+   <li><tt>string mResult</tt> </li>
+   <li><tt>string mSubtype</tt> </li>
+  </ul>
+  <h3>Class: <a name="FEMGroup">FEMGroup</a></h3>
+  <ul>
+   <li><tt>string mDescription</tt> </li>
+   <li><tt><a href="#GroupType">GroupType</a>* mGroupType</tt> </li>
+   <li><tt>int32 mLocalID</tt> </li>
+   <li><tt><a href="#Structure">Structure</a>* mStructure</tt> </li>
+  </ul>
+  <h3>Class: <a name="FEMProperties">FEMProperties</a></h3>
+  <ul>
+   <li><tt>string mDescription</tt> </li>
+   <li><tt>int32 mPropertyID</tt> </li>
+   <li><tt>string mPropertyType</tt> </li>
+   <li><tt>string mRupture</tt> </li>
+   <li><tt>float64 mXC</tt> </li>
+   <li><tt>float64 mXN</tt> </li>
+  </ul>
+  <h3>Class: <a name="FEMThreeDSolidGroup">FEMThreeDSolidGroup</a></h3>
+  <ul>
+   <li><tt>string mDisplacement</tt> </li>
+   <li><tt><a href="#FEMGroup">FEMGroup</a>* mGroup</tt> </li>
+   <li><tt>int32 mMaterialID</tt> </li>
+   <li><tt>string mResult</tt> </li>
+  </ul>
+  <h3>Class: <a name="FEMThreeDSolid">FEMThreeDSolid</a></h3>
+  <ul>
+   <li><tt>string mDescription</tt> </li>
+   <li><tt>int32 mElementID</tt> </li>
+   <li><tt><a href="#FEMGroup">FEMGroup</a>* mGroup</tt> </li>
+   <li><tt>int32 mMaterialID</tt> </li>
+   <li><tt>int32 mMaxes</tt> </li>
+   <li><tt><a href="#FEMNode">FEMNode</a>* mN1</tt> </li>
+   <li><tt><a href="#FEMNode">FEMNode</a>* mN10</tt> </li>
+   <li><tt><a href="#FEMNode">FEMNode</a>* mN11</tt> </li>
+   <li><tt><a href="#FEMNode">FEMNode</a>* mN12</tt> </li>
+   <li><tt><a href="#FEMNode">FEMNode</a>* mN13</tt> </li>
+   <li><tt><a href="#FEMNode">FEMNode</a>* mN14</tt> </li>
+   <li><tt><a href="#FEMNode">FEMNode</a>* mN15</tt> </li>
+   <li><tt><a href="#FEMNode">FEMNode</a>* mN16</tt> </li>
+   <li><tt><a href="#FEMNode">FEMNode</a>* mN17</tt> </li>
+   <li><tt><a href="#FEMNode">FEMNode</a>* mN18</tt> </li>
+   <li><tt><a href="#FEMNode">FEMNode</a>* mN19</tt> </li>
+   <li><tt><a href="#FEMNode">FEMNode</a>* mN2</tt> </li>
+   <li><tt><a href="#FEMNode">FEMNode</a>* mN20</tt> </li>
+   <li><tt><a href="#FEMNode">FEMNode</a>* mN21</tt> </li>
+   <li><tt><a href="#FEMNode">FEMNode</a>* mN22</tt> </li>
+   <li><tt><a href="#FEMNode">FEMNode</a>* mN23</tt> </li>
+   <li><tt><a href="#FEMNode">FEMNode</a>* mN24</tt> </li>
+   <li><tt><a href="#FEMNode">FEMNode</a>* mN25</tt> </li>
+   <li><tt><a href="#FEMNode">FEMNode</a>* mN26</tt> </li>
+   <li><tt><a href="#FEMNode">FEMNode</a>* mN27</tt> </li>
+   <li><tt><a href="#FEMNode">FEMNode</a>* mN3</tt> </li>
+   <li><tt><a href="#FEMNode">FEMNode</a>* mN4</tt> </li>
+   <li><tt><a href="#FEMNode">FEMNode</a>* mN5</tt> </li>
+   <li><tt><a href="#FEMNode">FEMNode</a>* mN6</tt> </li>
+   <li><tt><a href="#FEMNode">FEMNode</a>* mN7</tt> </li>
+   <li><tt><a href="#FEMNode">FEMNode</a>* mN8</tt> </li>
+   <li><tt><a href="#FEMNode">FEMNode</a>* mN9</tt> </li>
+   <li><tt>int16 mNodeAmount</tt> </li>
+   <li><tt>int32 mRecordNmb</tt> </li>
+   <li><tt>string mSave</tt> </li>
+   <li><tt>float64 mTBirth</tt> </li>
+   <li><tt>float64 mTDeath</tt> </li>
+  </ul>
+  <h3>Class: <a name="FEMSectionProp">FEMSectionProp</a></h3>
+  <ul>
+   <li><tt>float64 mArea</tt> </li>
+   <li><tt>float64 mRinertia</tt> </li>
+   <li><tt>float64 mSarea</tt> </li>
+   <li><tt>int32 mSectionID</tt> </li>
+   <li><tt>float64 mSinertia</tt> </li>
+   <li><tt>float64 mTarea</tt> </li>
+   <li><tt>float64 mTinertia</tt> </li>
+  </ul>
+  <h3>Class: <a name="FEMElasticMaterial">FEMElasticMaterial</a></h3>
+  <ul>
+   <li><tt>float64 mAlpha</tt> </li>
+   <li><tt>float64 mDensity</tt> </li>
+   <li><tt>float64 mE</tt> </li>
+   <li><tt><a href="#FEMMaterial">FEMMaterial</a>* mMaterial</tt> </li>
+   <li><tt>float64 mNU</tt> </li>
+  </ul>
+  <h3>Class: <a name="FEMPoints">FEMPoints</a></h3>
+  <ul>
+   <li><tt>string mDescription</tt> </li>
+   <li><tt>int32 mPointID</tt> </li>
+   <li><tt>int32 mSystemID</tt> </li>
+   <li><tt>float64 mX</tt> </li>
+   <li><tt>float64 mY</tt> </li>
+   <li><tt>float64 mZ</tt> </li>
+  </ul>
+  <h3>Class: <a name="FEMThermoOrthMaterials">FEMThermoOrthMaterials</a></h3>
+  <ul>
+   <li><tt>float64 mDensity</tt> </li>
+   <li><tt>int32 mMaterialID</tt> </li>
+   <li><tt>float64 mTREF</tt> </li>
+  </ul>
+  <h3>Class: <a name="FEMConstraints">FEMConstraints</a></h3>
+  <ul>
+   <li><tt>int32 mConstraintID</tt> </li>
+   <li><tt>string mDescription</tt> </li>
+   <li><tt>string mSlaveDOF</tt> </li>
+   <li><tt>int32 mSlaveNode</tt> </li>
+  </ul>
+  <h3>Class: <a name="FEMMCrigidities">FEMMCrigidities</a></h3>
+  <ul>
+   <li><tt>string mAcurveType</tt> </li>
+   <li><tt>int32 mAlpha</tt> </li>
+   <li><tt>float64 mAxialCF</tt> </li>
+   <li><tt>string mBcurveType</tt> </li>
+   <li><tt>float64 mBendingCF</tt> </li>
+   <li><tt>int32 mBeta</tt> </li>
+   <li><tt>float64 mDensity</tt> </li>
+   <li><tt>int32 mForceAxID</tt> </li>
+   <li><tt>string mHardening</tt> </li>
+   <li><tt>float64 mMassArea</tt> </li>
+   <li><tt>float64 mMassR</tt> </li>
+   <li><tt>float64 mMassS</tt> </li>
+   <li><tt>float64 mMassT</tt> </li>
+   <li><tt>int32 mMomentRID</tt> </li>
+   <li><tt>int32 mMomentSID</tt> </li>
+   <li><tt>int32 mMomentTID</tt> </li>
+   <li><tt>int32 mRigidityID</tt> </li>
+   <li><tt>string mTcurveType</tt> </li>
+   <li><tt>float64 mTorsionCF</tt> </li>
+  </ul>
+  <h3>Class: <a name="FEMSkeySysNode">FEMSkeySysNode</a></h3>
+  <ul>
+   <li><tt>string mDescription</tt> </li>
+   <li><tt><a href="#FEMNode">FEMNode</a>* mNode1</tt> </li>
+   <li><tt><a href="#FEMNode">FEMNode</a>* mNode2</tt> </li>
+   <li><tt><a href="#FEMNode">FEMNode</a>* mNode3</tt> </li>
+   <li><tt>int32 mSkewSystemID</tt> </li>
+  </ul>
+  <h3>Class: <a name="FEMIsoBeamGroup">FEMIsoBeamGroup</a></h3>
+  <ul>
+   <li><tt>string mDisplacement</tt> </li>
+   <li><tt><a href="#FEMGroup">FEMGroup</a>* mGroup</tt> </li>
+   <li><tt>string mIniStrain</tt> </li>
+   <li><tt>int32 mMaterialID</tt> </li>
+   <li><tt>string mResult</tt> </li>
+   <li><tt>int32 mSectionID</tt> </li>
+  </ul>
+  <h3>Class: <a name="FEMShellDOF">FEMShellDOF</a></h3>
+  <ul>
+   <li><tt>string mDOFnumber</tt> </li>
+   <li><tt><a href="#FEMNode">FEMNode</a>* mNode</tt> </li>
+   <li><tt>int32 mVectorID</tt> </li>
+  </ul>
+  <h3>Class: <a name="FEMCrossSections">FEMCrossSections</a></h3>
+  <ul>
+   <li><tt>string mDescription</tt> </li>
+   <li><tt>int32 mSectionID</tt> </li>
+   <li><tt>string mSectionType</tt> </li>
+  </ul>
+  <h3>Class: <a name="FEMTwistMomentData">FEMTwistMomentData</a></h3>
+  <ul>
+   <li><tt>float64 mMoment</tt> </li>
+   <li><tt>int32 mRecordNmb</tt> </li>
+   <li><tt>float64 mTwist</tt> </li>
+   <li><tt>int32 mTwistMomentID</tt> </li>
+  </ul>
+  <h3>Class: <a name="FEMShell">FEMShell</a></h3>
+  <ul>
+   <li><tt>string mDescription</tt> </li>
+   <li><tt>int32 mElementID</tt> </li>
+   <li><tt><a href="#FEMGroup">FEMGroup</a>* mGroup</tt> </li>
+   <li><tt><a href="#FEMMaterial">FEMMaterial</a>* mMaterial</tt> </li>
+   <li><tt><a href="#FEMNode">FEMNode</a>* mN1</tt> </li>
+   <li><tt><a href="#FEMNode">FEMNode</a>* mN2</tt> </li>
+   <li><tt><a href="#FEMNode">FEMNode</a>* mN3</tt> </li>
+   <li><tt><a href="#FEMNode">FEMNode</a>* mN4</tt> </li>
+   <li><tt><a href="#FEMNode">FEMNode</a>* mN5</tt> </li>
+   <li><tt><a href="#FEMNode">FEMNode</a>* mN6</tt> </li>
+   <li><tt><a href="#FEMNode">FEMNode</a>* mN7</tt> </li>
+   <li><tt><a href="#FEMNode">FEMNode</a>* mN8</tt> </li>
+   <li><tt><a href="#FEMNode">FEMNode</a>* mN9</tt> </li>
+   <li><tt>int16 mNodeAmount</tt> </li>
+   <li><tt>int32 mRecordNmb</tt> </li>
+   <li><tt>string mSave</tt> </li>
+   <li><tt>float64 mT1</tt> </li>
+   <li><tt>float64 mT2</tt> </li>
+   <li><tt>float64 mT3</tt> </li>
+   <li><tt>float64 mT4</tt> </li>
+   <li><tt>float64 mT5</tt> </li>
+   <li><tt>float64 mT6</tt> </li>
+   <li><tt>float64 mT7</tt> </li>
+   <li><tt>float64 mT8</tt> </li>
+   <li><tt>float64 mT9</tt> </li>
+   <li><tt>float64 mTBirth</tt> </li>
+   <li><tt>float64 mTDeath</tt> </li>
+  </ul>
+  <h3>Class: <a name="FEMNTNContact">FEMNTNContact</a></h3>
+  <ul>
+   <li><tt>int32 mContactorNode</tt> </li>
+   <li><tt>int32 mContGroupID</tt> </li>
+   <li><tt>int32 mContPair</tt> </li>
+   <li><tt>string mPrintRes</tt> </li>
+   <li><tt>int32 mRecordNmb</tt> </li>
+   <li><tt>string mSaveRes</tt> </li>
+   <li><tt>int32 mTargetNode</tt> </li>
+   <li><tt>float64 mTargetNx</tt> </li>
+   <li><tt>float64 mTargetNy</tt> </li>
+   <li><tt>float64 mTargetNz</tt> </li>
+  </ul>
+  <h3>Class: <a name="FEMShellLayer">FEMShellLayer</a></h3>
+  <ul>
+   <li><tt><a href="#FEMGroup">FEMGroup</a>* mGroup</tt> </li>
+   <li><tt>int32 mLayerNumber</tt> </li>
+   <li><tt>int32 mMaterialID</tt> </li>
+   <li><tt>float64 mPThick</tt> </li>
+   <li><tt>int32 mRecordNmb</tt> </li>
+  </ul>
+  <h3>Class: <a name="FEMSkewSysAngles">FEMSkewSysAngles</a></h3>
+  <ul>
+   <li><tt>string mDescription</tt> </li>
+   <li><tt>float64 mPHI</tt> </li>
+   <li><tt>int32 mSkewSystemID</tt> </li>
+   <li><tt>float64 mTHETA</tt> </li>
+   <li><tt>float64 mXSI</tt> </li>
+  </ul>
+  <h3>Class: <a name="FEMGroundMotionRecord">FEMGroundMotionRecord</a></h3>
+  <ul>
+   <li><tt>string mDescription</tt> </li>
+   <li><tt>int16 mGMRecordID</tt> </li>
+   <li><tt>string mGMRecordName</tt> </li>
+  </ul>
+  <h3>Class: <a name="FEMGeneralGroup">FEMGeneralGroup</a></h3>
+  <ul>
+   <li><tt><a href="#FEMGroup">FEMGroup</a>* mGroup</tt> </li>
+   <li><tt>int32 mMatrixSet</tt> </li>
+   <li><tt>string mResult</tt> </li>
+   <li><tt>string mSkewSystem</tt> </li>
+  </ul>
+  <h3>Class: <a name="FEMTwoDSolid">FEMTwoDSolid</a></h3>
+  <ul>
+   <li><tt>float64 mBet</tt> </li>
+   <li><tt>string mDescription</tt> </li>
+   <li><tt>int32 mElementID</tt> </li>
+   <li><tt><a href="#FEMGroup">FEMGroup</a>* mGroup</tt> </li>
+   <li><tt>int32 mMaterialID</tt> </li>
+   <li><tt><a href="#FEMNode">FEMNode</a>* mN1</tt> </li>
+   <li><tt><a href="#FEMNode">FEMNode</a>* mN2</tt> </li>
+   <li><tt><a href="#FEMNode">FEMNode</a>* mN3</tt> </li>
+   <li><tt><a href="#FEMNode">FEMNode</a>* mN4</tt> </li>
+   <li><tt><a href="#FEMNode">FEMNode</a>* mN5</tt> </li>
+   <li><tt><a href="#FEMNode">FEMNode</a>* mN6</tt> </li>
+   <li><tt><a href="#FEMNode">FEMNode</a>* mN7</tt> </li>
+   <li><tt><a href="#FEMNode">FEMNode</a>* mN8</tt> </li>
+   <li><tt><a href="#FEMNode">FEMNode</a>* mN9</tt> </li>
+   <li><tt>int16 mNodeAmount</tt> </li>
+   <li><tt>int32 mRecordNmb</tt> </li>
+   <li><tt>string mSave</tt> </li>
+   <li><tt>float64 mTBirth</tt> </li>
+   <li><tt>float64 mTDeath</tt> </li>
+   <li><tt>float64 mThick</tt> </li>
+  </ul>
+  <h3>Class: <a name="FEMAppliedTemperature">FEMAppliedTemperature</a></h3>
+  <ul>
+   <li><tt>float64 mArrivalTime</tt> </li>
+   <li><tt>float64 mFactor</tt> </li>
+   <li><tt><a href="#FEMNode">FEMNode</a>* mNode</tt> </li>
+   <li><tt>int32 mRecordNmbr</tt> </li>
+   <li><tt>int32 mTimeFunctionID</tt> </li>
+  </ul>
+  <h3>Class: <a name="FEMMatrixSets">FEMMatrixSets</a></h3>
+  <ul>
+   <li><tt>int32 mDamping</tt> </li>
+   <li><tt>string mDescription</tt> </li>
+   <li><tt>int32 mMass</tt> </li>
+   <li><tt>int32 mMatrixSetID</tt> </li>
+   <li><tt>int32 mStiffness</tt> </li>
+   <li><tt>int32 mStress</tt> </li>
+  </ul>
+  <h3>Class: <a name="FEMConstraintCoef">FEMConstraintCoef</a></h3>
+  <ul>
+   <li><tt>float64 mCoefficient</tt> </li>
+   <li><tt>int32 mConstraintID</tt> </li>
+   <li><tt>string mDescription</tt> </li>
+   <li><tt>string mMasterDOF</tt> </li>
+   <li><tt>int32 mMasterNode</tt> </li>
+   <li><tt>int32 mRecordNmb</tt> </li>
+  </ul>
+  <h3>Class: <a name="FEMSectionBox">FEMSectionBox</a></h3>
+  <ul>
+   <li><tt>float64 mHeight</tt> </li>
+   <li><tt>float64 mSC</tt> </li>
+   <li><tt>int32 mSectionID</tt> </li>
+   <li><tt>float64 mSSarea</tt> </li>
+   <li><tt>float64 mTC</tt> </li>
+   <li><tt>float64 mThick1</tt> </li>
+   <li><tt>float64 mThick2</tt> </li>
+   <li><tt>float64 mTorfac</tt> </li>
+   <li><tt>float64 mTSarea</tt> </li>
+   <li><tt>float64 mWidth</tt> </li>
+  </ul>
+  <h3>Class: <a name="FEMNKDisplForce">FEMNKDisplForce</a></h3>
+  <ul>
+   <li><tt>float64 mDisplacement</tt> </li>
+   <li><tt>float64 mForce</tt> </li>
+   <li><tt>int32 mPropertyID</tt> </li>
+   <li><tt>int32 mRecordNmb</tt> </li>
+  </ul>
+  <h3>Class: <a name="FEMPlasticStrainStress">FEMPlasticStrainStress</a></h3>
+  <ul>
+   <li><tt>int32 mMaterialID</tt> </li>
+   <li><tt>int32 mRecordNumber</tt> </li>
+   <li><tt>float64 mStrain</tt> </li>
+   <li><tt>float64 mStress</tt> </li>
+  </ul>
+  <h3>Class: <a name="FEMShellAxesOrthoData">FEMShellAxesOrthoData</a></h3>
+  <ul>
+   <li><tt>int32 mAxOrthoID</tt> </li>
+   <li><tt>int32 mElementID</tt> </li>
+   <li><tt>int32 mRecordNmb</tt> </li>
+  </ul>
+  <h3>Class: <a name="FEMGeneralNode">FEMGeneralNode</a></h3>
+  <ul>
+   <li><tt>int32 mElementID</tt> </li>
+   <li><tt><a href="#FEMGroup">FEMGroup</a>* mGroup</tt> </li>
+   <li><tt>int16 mLocalNmb</tt> </li>
+   <li><tt><a href="#FEMNode">FEMNode</a>* mNode</tt> </li>
+   <li><tt>int32 mRecordNmb</tt> </li>
+  </ul>
+  <h3>Class: <a name="FEMStrLines">FEMStrLines</a></h3>
+  <ul>
+   <li><tt>int32 mLineID</tt> </li>
+   <li><tt>int32 mP1</tt> </li>
+   <li><tt>int32 mP2</tt> </li>
+  </ul>
+  <h3>Class: <a name="FEMContactSurface">FEMContactSurface</a></h3>
+  <ul>
+   <li><tt>int32 mContGroupID</tt> </li>
+   <li><tt>int32 mContSegment</tt> </li>
+   <li><tt>int32 mContSurface</tt> </li>
+   <li><tt><a href="#FEMNode">FEMNode</a>* mN1</tt> </li>
+   <li><tt><a href="#FEMNode">FEMNode</a>* mN2</tt> </li>
+   <li><tt><a href="#FEMNode">FEMNode</a>* mN3</tt> </li>
+   <li><tt><a href="#FEMNode">FEMNode</a>* mN4</tt> </li>
+   <li><tt>int32 mRecordNmb</tt> </li>
+  </ul>
+  <h3>Class: <a name="FEMMCForceData">FEMMCForceData</a></h3>
+  <ul>
+   <li><tt>int32 mCurvMomentID</tt> </li>
+   <li><tt>float64 mForce</tt> </li>
+   <li><tt>int32 mMomentSTID</tt> </li>
+   <li><tt>int32 mRecordNmb</tt> </li>
+  </ul>
+  <h3>Class: <a name="FEMSpring">FEMSpring</a></h3>
+  <ul>
+   <li><tt>float64 mAX</tt> </li>
+   <li><tt>float64 mAY</tt> </li>
+   <li><tt>float64 mAZ</tt> </li>
+   <li><tt>string mDescription</tt> </li>
+   <li><tt>int32 mElementID</tt> </li>
+   <li><tt><a href="#FEMGroup">FEMGroup</a>* mGroup</tt> </li>
+   <li><tt>int16 mID1</tt> </li>
+   <li><tt>int16 mID2</tt> </li>
+   <li><tt><a href="#FEMNode">FEMNode</a>* mN1</tt> </li>
+   <li><tt><a href="#FEMNode">FEMNode</a>* mN2</tt> </li>
+   <li><tt>int32 mPropertySet</tt> </li>
+   <li><tt>int32 mRecordNmb</tt> </li>
+   <li><tt>string mSave</tt> </li>
+   <li><tt>float64 mTBirth</tt> </li>
+   <li><tt>float64 mTDeath</tt> </li>
+  </ul>
+  <h3>Class: <a name="FEMSpringGroup">FEMSpringGroup</a></h3>
+  <ul>
+   <li><tt>string mBolt</tt> </li>
+   <li><tt><a href="#FEMGroup">FEMGroup</a>* mGroup</tt> </li>
+   <li><tt>string mNonlinear</tt> </li>
+   <li><tt>int32 mPropertySet</tt> </li>
+   <li><tt>string mResult</tt> </li>
+   <li><tt>string mSkewSystem</tt> </li>
+  </ul>
+  <h3>Class: <a name="FEMShellGroup">FEMShellGroup</a></h3>
+  <ul>
+   <li><tt>string mDisplacement</tt> </li>
+   <li><tt><a href="#FEMGroup">FEMGroup</a>* mGroup</tt> </li>
+   <li><tt><a href="#FEMMaterial">FEMMaterial</a>* mMaterial</tt> </li>
+   <li><tt>int32 mNLayers</tt> </li>
+   <li><tt>string mResult</tt> </li>
+   <li><tt>int16 mSectionResult</tt> </li>
+   <li><tt>string mStressReference</tt> </li>
+   <li><tt>float64 mThickness</tt> </li>
+  </ul>
+  <h3>Class: <a name="DaqUnit">DaqUnit</a></h3>
+  <ul>
+   <li><tt>string mModel</tt> </li>
+   <li><tt>string mIdentifier</tt> </li>
+  </ul>
+  <h3>Class: <a name="DaqUnitChannel">DaqUnitChannel</a></h3>
+  <ul>
+   <li><tt><a href="#DaqUnit">DaqUnit</a>* mUnit</tt> Corresponding data acquisition unit.</li>
+   <li><tt>int16 mNumber</tt> Local channel number.</li>
+  </ul>
+  <h3>Class: <a name="Sensor">Sensor</a></h3>
+  <ul>
+   <li><tt><a href="#SensorType">SensorType</a>* mType</tt> </li>
+   <li><tt>string mModel</tt> </li>
+   <li><tt>string mIdentifier</tt> </li>
+  </ul>
+  <h3>Class: <a name="Transducer">Transducer</a></h3>
+  <ul>
+   <li><tt>string mModel</tt> </li>
+   <li><tt>string mIdentifier</tt> </li>
+  </ul>
+  <h3>Class: <a name="Experiment">Experiment</a></h3>
+  <ul>
+   <li><tt>int16 mFrequency</tt> </li>
+   <li><tt>int32 mDuration</tt> </li>
+   <li><tt>int32 mBufferData</tt> </li>
+  </ul>
+  <h3>Class: <a name="Cycle">Cycle</a></h3>
+  <ul>
+   <li><tt>timestamp mTime</tt> </li>
+   <li><tt><a href="#Experiment">Experiment</a>* mExperiment</tt> </li>
+  </ul>
+  <h3>Class: <a name="SensorTimeData">SensorTimeData</a></h3>
+  <ul>
+   <li><tt><a href="#Structure">Structure</a>* mStructure</tt> </li>
+   <li><tt><a href="#Sensor">Sensor</a>* mSensor</tt> </li>
+   <li><tt>int16 mChannel</tt> </li>
+   <li><tt>timestamp mStartTime</tt> </li>
+   <li><tt>string mStatus</tt> </li>
+   <li><tt><a href="#FEMNode">FEMNode</a>* mNode</tt> </li>
+  </ul>
+  <h3>Class: <a name="TransducerTimeData">TransducerTimeData</a></h3>
+  <ul>
+   <li><tt><a href="#Transducer">Transducer</a>* mTransducer</tt> </li>
+   <li><tt><a href="#Sensor">Sensor</a>* mSensor</tt> </li>
+   <li><tt><a href="#FEMNode">FEMNode</a>* mNode</tt> </li>
+   <li><tt>int16 mOrientation</tt> </li>
+   <li><tt>int32 mAmplification</tt> </li>
+   <li><tt>int16 mChannel</tt> </li>
+   <li><tt>string mFilter</tt> </li>
+   <li><tt>timestamp mStartTime</tt> </li>
+   <li><tt>string mStatus</tt> </li>
+  </ul>
+  <h3>Class: <a name="ExperimentStructureData">ExperimentStructureData</a></h3>
+  <ul>
+   <li><tt><a href="#Experiment">Experiment</a>* mExperiment</tt> </li>
+   <li><tt><a href="#Structure">Structure</a>* mStructure</tt> </li>
+   <li><tt>timestamp mStartTime</tt> </li>
+   <li><tt>string mStatus</tt> </li>
+  </ul>
+  <h3>Class: <a name="TransducerCycleData">TransducerCycleData</a></h3>
+  <ul>
+   <li><tt><a href="#Transducer">Transducer</a>* mTransducer</tt> </li>
+   <li><tt><a href="#Cycle">Cycle</a>* mCycle</tt> </li>
+   <li><tt>float32 mSoftwareScaling</tt> </li>
+  </ul>
+  <h3>Array: <a name="MappingMatrix">MappingMatrix</a></h3>
+  <p>Linear mapping between two node-related quantities.</p>
+  <p>Array data type: float64</p>
+  <ul>
+   <li><tt><a href="#Structure">Structure</a>* mStructure</tt> Parent structure</li>
+   <li><tt>string mName</tt> Short name</li>
+   <li><tt>string mDescription</tt> Description</li>
+   <li><tt><a href="#Quantity">Quantity</a>* mOutputQuantity</tt> Output quantity</li>
+   <li><tt><a href="#Quantity">Quantity</a>* mInputQuantity</tt> Input quantity</li>
+  </ul>
+  <h4>Axes</h4>
+  <ul>
+   <li><tt><a href="#FEMNode">FEMNode</a>* mOutputNode</tt> Output node</li>
+   <li><tt><a href="#FEMNode">FEMNode</a>* mInputNode</tt> Input node</li>
+  </ul>
+  <h3>Signal: <a name="DaqUnitChannelData">DaqUnitChannelData</a></h3>
+  <p>Data acquisition unit raw channel data.</p>
+  <p>Signal data type: int32</p>
+  <ul>
+   <li><tt><a href="#DaqUnitChannel">DaqUnitChannel</a>* mChannel</tt> Parent sensor</li>
+  </ul>
+  <h4>Axes</h4>
+  <ul>
+   <li><tt><a href="#Quantity">Quantity</a>* mSubChannels</tt> Subchannels</li>
+  </ul>
+  <h3>Signal: <a name="AccelMeas">AccelMeas</a></h3>
+  <p>Multi-axis accelerometer measurement data.</p>
+  <p>Signal data type: float32</p>
+  <ul>
+   <li><tt><a href="#Sensor">Sensor</a>* mSensor</tt> Parent sensor</li>
+   <li><tt>string mName</tt> Short name</li>
+   <li><tt>string mDescription</tt> Description</li>
+  </ul>
+  <h4>Axes</h4>
+  <ul>
+   <li><tt><a href="#Quantity">Quantity</a>* mDirection</tt> Directions</li>
+  </ul>
+ </body>
+</html>

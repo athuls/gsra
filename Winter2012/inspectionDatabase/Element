@@ -1,0 +1,4 @@
+Element 
+Element ID:int (number) > 50,000 then number, else varchar
+Element code : int
+Element name : varchar(20) 

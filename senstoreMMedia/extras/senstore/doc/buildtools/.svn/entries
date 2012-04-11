@@ -1,0 +1,31 @@
+10
+
+dir
+30
+svn+ssh://svnrepos@localhost:55555/nistrepos/nistcommon/senstore/core/branches/TRY-jsteinbe-multimedia-extension/senstoreCore/extras/senstore/doc/buildtools
+svn+ssh://svnrepos@localhost:55555/nistrepos/nistcommon
+
+
+
+2010-09-07T19:18:18.890629Z
+19
+gwen
+
+
+svn:special svn:externals svn:needs-lock
+
+
+
+
+
+
+
+
+
+
+
+df580e07-4efc-472b-9e5a-37e840e95235
+
+html
+dir
+

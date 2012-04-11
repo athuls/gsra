@@ -1,0 +1,46 @@
+---------------------------------------------------
+
+Some examples to learn how to *program* in Torch3.
+Of course you can use them without any changes,
+but you will not use 1/10 of the library if you
+don't want to code something!
+
+boosting.cc:  adaboost with MLP in classification.
+knn.cc:       K-nearest-neighbors algorithm.
+mlp.cc:       multi-layered perceptron.
+svm.cc:       support vector machines.
+svm_multi.cc: SVM with more than two classes.
+
+---------------------------------------------------
+
+You will find two examples of datasets in data/.
+Torch3 is able to deal directly with gziped data,
+but you can uncompress them if you want to have a
+look. (Or do a zless, zcat, zmore).
+
+These data are classification data: there is 784
+inputs (the first 784 columns) and the 1 target
+which can take values between 0..9. (10 classes).
+
+---------------------------------------------------
+
+Examples of command line:
+
+Linux_OPT_FLOAT/boosting -nhu 5 -iter 20 -n 5 -valid data/test_data.gz data/train_data.gz 784 10
+
+Linux_OPT_FLOAT/knn -kfold 10 -K 3 data/train_data.gz 784 10
+
+Linux_OPT_FLOAT/mlp -nhu 10 -iter 20 -save model data/train_data.gz 784 10
+Linux_OPT_FLOAT/mlp --test model data/test_data.gz
+Linux_OPT_FLOAT/mlp -kfold 10 -nhu 10 -iter 20 data/train_data.gz 784 10
+
+Linux_OPT_FLOAT/svm -std 1650 -class 9 data/train_data.gz model
+Linux_OPT_FLOAT/svm --test model data/test_data.gz
+Linux_OPT_FLOAT/svm --kfold -std 1650 -class 9 data/train_data.gz 10
+
+Linux_OPT_FLOAT/svm_multi -std 1650 data/train_data.gz model 10
+Linux_OPT_FLOAT/svm_multi --test model data/test_data.gz
+
+For each command line, results are in the_class_err or the_valid_class_err.
+
+---------------------------------------------------
